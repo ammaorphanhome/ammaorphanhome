@@ -1,0 +1,19 @@
+doctype html
+html
+	head
+		include ../includes/_head.jade
+
+	body.sidebar-mini.fixed
+		.wrapper
+			// Navbar
+			include ../includes/_navbar.jade
+
+			// Side-Nav
+			include ../includes/_sidebar.jade
+
+			.content-wrapper
+				block content
+			
+		// Javascripts
+		include ../includes/_javascript.jade
+		block specific-js
