@@ -14,8 +14,8 @@ curl_setopt($ch, CURLOPT_HEADER, FALSE);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 curl_setopt($ch, CURLOPT_HTTPHEADER,
-            array("X-Api-Key:19bf1495dabe8eee14c01fbd14eb3aec",
-                  "X-Auth-Token:c40bbd668ead7811ac67465f01a8cc09"));
+            array("X-Api-Key:test-token",
+                  "X-Auth-Token:test-token"));
     
    
     $fullname = $info['name'];
@@ -31,9 +31,9 @@ $payload = Array(
     'amount' => $amount,
     'phone' => $phone,
     'buyer_name' => $fullname,
-    'redirect_url' => 'http://readytolaunchwebsites.com/models/S/ammaorphan.org/success.php?order_id='.$info[guid],
+    'redirect_url' => 'http://ammaorphanhome.org/success.php?order_id='.$info[guid],
     'send_email' => true,
-    'webhook' => 'http://readytolaunchwebsites.com/models/S/ammaorphan.org/success.php?order_id='.$info[guid],
+    'webhook' => 'http://ammaorphanhome.org/success.php?order_id='.$info[guid],
     'send_sms' => true,
     'email' => $email,
     'allow_repeated_payments' => false
