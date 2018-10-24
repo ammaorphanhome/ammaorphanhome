@@ -59,7 +59,7 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
     
       <?php include('nav.php');?>
       
-       <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_3.jpg)"  data-stellar-background-ratio="0.5">
+       <!--<section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_3.jpg)"  data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -69,7 +69,20 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
             </div>
           </div>
         </div>
+      </section>-->
+
+      <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn">
+                          <h1 class="probootstrap-heading probootstrap-animate">Donate <span>Together we can make a difference</span></h1>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </section>
+
 <section class="probootstrap-section">
         <div class="container">
           <div class="row">
