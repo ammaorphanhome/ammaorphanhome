@@ -1,39 +1,48 @@
 <?php //print_r($_GET);
-$data = $_POST;
-$mac_provided = $data['mac'];
-unset($data['mac']);
-$ver = explode('.', phpversion());
-$major = (int) $ver[0];
-$minor = (int) $ver[1];
-if($major >= 5 and $minor >= 4){
-     ksort($data, SORT_STRING | SORT_FLAG_CASE);
+require "cw_admin/lib/config.php";
+
+$pay_id=$_REQUEST['payment_id'];
+$req=$_REQUEST['payment_request_id'];
+//print_r($_REQUEST);
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, 'https://www.instamojo.com/api/1.1/payments/'.$pay_id.'/');
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+curl_setopt($ch, CURLOPT_HTTPHEADER,
+    array("X-Api-Key:19bf1495dabe8eee14c01fbd14eb3aec",
+        "X-Auth-Token:c40bbd668ead7811ac67465f01a8cc09"));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$json=json_decode($response,TRUE);
+
+if($json['success']==true){
+    echo "payment done";
+    $payment=$json['payment'];
+
+
+    $data =$db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."' ,payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
+?>
+    <script type="text/javascript">
+        alert('Your Payment is sucess');
+		window.location="index.php";
+	</script>
+
+    <?php
 }
 else{
-     uksort($data, 'strcasecmp');
-}
-$mac_calculated = hash_hmac("sha1", implode("|", $data), "b2ce61d9aa704437bfe0d363805c5f79");
-if($mac_provided == $mac_calculated){
-    echo "MAC is fine";
+    echo "payment failed";
+    $data = $db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."',  payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."'  WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
+    ?>
 
- if($data['status'] == "Credit"){//Payment if SUCCESS
- 
-    $data =$db->query("UPDATE orders SET payment_id='".$data['payment_id']."', payment_request_id='".$data['payment_request_id']."', payment_status='".$data['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
-	?>
-	<script type="text/javascript">
-			alert('Your Pyment is sucess');
-			window.location="index.php";
-			</script>
-	
-	
-<?php	}else{
-	
-	 $data = $db->query("UPDATE orders SET payment_id='".$data['payment_id']."', payment_request_id='".$data['payment_request_id']."', payment_status='".$data['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
-	?>
-	<script type="text/javascript">
-			alert('Your Pyment is Unsucess');
+    <script type="text/javascript">
+        alert('Your Pyment is Unsucess');
 			window.location="donate.php";
-			</script>	
-	
-<?	
-	}
-} ?>
+	</script>
+<?php
+    }
+?>
+

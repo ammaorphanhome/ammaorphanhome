@@ -90,11 +90,11 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
             <form action="" method="post" enctype="multipart/form-data" class="probootstrap-form">
               <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="eg. John Doe">
+                <input type="text" class="form-control" id="name" name="name" placeholder="eg. Raj Kumar">
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="eg. info@uicookies.com">
+                <input type="email" class="form-control" id="email" name="email" placeholder="eg. info@ammaorphanhome.org">
               </div>
               
               <div class="form-group">
@@ -105,7 +105,7 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
               
               <div class="form-group">
                 <label for="amount">Amount</label>
-                <input type="number" class="form-control" id="amount" name="amount" placeholder="$1000.00">
+                <input type="number" class="form-control" id="amount" name="amount" placeholder="₹1000.00">
               </div>
 			  
 			  <div class="form-group">

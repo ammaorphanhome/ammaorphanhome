@@ -1,7 +1,7 @@
 <!DOCTYPE php>
 
-<php lang="en">
-<meta http-equiv="content-type" content="text/php;charset=UTF-8" />
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/custom.css">
 
     <!--[if lt IE 9]>
-      <script src="js/vendor/php5shiv.min.js"></script>
+      <script src="js/vendor/html5shiv.min.js"></script>
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
   </head>
@@ -205,4 +205,4 @@ India.</span></li>
     <script src="js/custom.js"></script>
     
   </body>
-</php>
+</html>
