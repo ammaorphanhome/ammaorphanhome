@@ -21,16 +21,17 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
 
 	if($sth==true)
 	{ ?>
-	<script type="text/javascript">
-			//alert('Data Successfully Inserted');
-			window.location="payment.php?oid=<?php echo $insid;?>";
-			</script>
-	<?php }  else { ?>
-	<script type="text/javascript">
-			alert('Please try Again');
-			window.location="donate.php";
-			</script>
-	<?php } 
+        <script type="text/javascript">
+            //alert('Data Successfully Inserted');
+            window.location="test_payment.php?oid=<?php echo $insid;?>";
+        </script>
+    <?php }  else { ?>
+        <script type="text/javascript">
+            alert('Could not verify the information, Please try Again!');
+            window.location="donate.php";
+        </script>
+    <?php
+	}
 }   
 ?>
 <!DOCTYPE html>
@@ -83,70 +84,58 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
           </div>
       </section>
 
-<section class="probootstrap-section">
+      <section class="probootstrap-section">
         <div class="container">
           <div class="row">
-          <div class="col-md-5 probootstrap-animate">
-            <form action="" method="post" enctype="multipart/form-data" class="probootstrap-form">
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="eg. Raj Kumar">
+              <div class="col-md-5 probootstrap-animate">
+                <form action="" method="post" enctype="multipart/form-data" class="probootstrap-form">
+                  <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="eg. Raj Kumar">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="eg. info@ammaorphanhome.org">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Phone</label>
+                    <input type="text" class="form-control"  maxlength="10" pattern="^\d{10}$" id="email" name="mobile" placeholder="eg. 9999999999">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" class="form-control" id="amount" name="amount" placeholder="₹1000.00">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="amount">Upload Donar Photo</label>
+                    <input type="file" class="form-control" id="amount" name="image">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message">Note</label>
+                    <textarea cols="30" rows="5" class="form-control" id="message" name="msg" placeholder="eg. This donation is for the children who needs food."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Donate">
+                  </div>
+                </form>
               </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="eg. info@ammaorphanhome.org">
+              <div class="col-md-4 col-md-push-1 probootstrap-animate">
+                  <img src="img/donate.png" class="img-responsive"/> <br/><br/>
+                  <p><b>Bank Account details, If you wish to donate through bank: <br><br>
+                          Bank Name : Karur Vysya Bank <br>
+                          Account Name : Amma Anadha Sharanalayam <br>
+                          Account No : 4810115000000166 <br>
+                          Branch : Ganesh Basthi Kothagudem <br>
+                          IFSC : KVBL0004810 <br><br>
+                          Mr.Teja (Founder): 8790782983</b>
+                  </p>
               </div>
-              
-              <div class="form-group">
-                <label for="email">Phone</label>
-                <input type="text" class="form-control"  maxlength="10" pattern="^\d{10}$" id="email" name="mobile" placeholder="eg. 9999999999">
-              </div>
-              
-              
-              <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="number" class="form-control" id="amount" name="amount" placeholder="₹1000.00">
-              </div>
-			  
-			  <div class="form-group">
-                <label for="amount">Upload Donar Photo</label>
-                <input type="file" class="form-control" id="amount" name="image">
-              </div>
-			  
-              <div class="form-group">
-                <label for="message">Note</label>
-                <textarea cols="30" rows="5" class="form-control" id="message" name="msg" placeholder="eg. This donation is for the children who needs food."></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Donate">
-              </div>
-            </form>
           </div>
-		  
-		  
-          <div class="col-md-4 col-md-push-1 probootstrap-animate">
-            
-			<h3>Account Details : -</h3>
-<p><b>Bank Name : Karur Vysya Bank <br>
-Account Name : Amma Anadha Sharanalayam <br>
-Account No : 4810115000000166 <br>
-Branch : Ganesh Basthi Kothagudem, <br>
-IFSC : KVBL0004810 <br><br>
-Mr.Teja (Founder): 8790782983</b>
-</p>
-			
-			
-			
-			<img src="img/donate.png" class="img-responsive"/>
-			
-			
-          </div>
-        </div>
         </div>
       </section>
-
-	  
-	  
 
       <footer class="probootstrap-footer probootstrap-bg">
         <div class="container">
@@ -169,13 +158,12 @@ Mr.Teja (Founder): 8790782983</b>
                 <h3>Contact Info</h3>
                 <ul class="probootstrap-contact-info">
                   <li><i class="icon-location2"></i> <span> #4-133, Hemachandrapuram, 
-Karukonda Gram Panchayat, 
-Kothagudem, Telangana, 
-India.</span></li>
+                            Karukonda Gram Panchayat,
+                            Kothagudem, Telangana,
+                            India.</span></li>
                   <li><i class="icon-mail"></i><span><a href="#" class="__cf_email__"> info@ammaorphanhome.org</a></span></li>
                   <li><i class="icon-phone2"></i><span> +91 87907 82983</span></li>
                 </ul>
-                
               </div>
             </div>
 

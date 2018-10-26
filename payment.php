@@ -17,8 +17,8 @@ curl_setopt($ch, CURLOPT_HEADER, FALSE);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 curl_setopt($ch, CURLOPT_HTTPHEADER,
-    array("X-Api-Key:19bf1495dabe8eee14c01fbd14eb3aec",
-        "X-Auth-Token:c40bbd668ead7811ac67465f01a8cc09"));
+    array("X-Api-Key:your-key",
+        "X-Auth-Token:your-token"));
     
    
     $fullname = $info['name'];
