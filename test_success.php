@@ -68,7 +68,7 @@ require "cw_admin/lib/config.php";
                         <div class="col-md-5 probootstrap-animate">
                             <form action="" method="post" enctype="multipart/form-data" class="probootstrap-form">
                                 <div class="form-group">
-                                    <p><b>Your donation is successful, It means a lot to us, Thank you!</b></p>
+                                    <p><b>Your donation is successful, It means lot to us, Thank you!</b></p>
                                 </div>
                                 <div class="form-group">
                                     <label for="paymentId">Payment ID: </label>

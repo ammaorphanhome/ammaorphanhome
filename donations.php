@@ -44,10 +44,19 @@ require "cw_admin/lib/config.php";
 <section class="probootstrap-section">
     <div class="container">
         <div class="col-md-12">
-            <div><!--a href="ysa.php?action=add" class="btn btn-success"><i class="fa fa-lg fa-plus"></i>Add New</a--><!-- <a href="ysa.php?action=edit" class="btn btn-info btn-flat"><i class="fa fa-lg fa-edit"></i></a><a href="#" class="btn btn-warning btn-flat"><i class="fa fa-lg fa-trash"></i></a>--></div>
             <?php
             $sth = $db->query ("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' ORDER BY `guid` DESC");
             $count = $sth->rowCount(); ?>
+
+            <div class="row">
+                <div class="col-md-12 probootstrap-animate">
+                    <form action="" method=""  class="probootstrap-form">
+                        <div class="form-group">
+                            <p><b>Thank you for your kind donations, Your generosity will directly benefit the children of Amma Orphan Home.</b></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <table id="sampleTable" class="table table-hover table-bordered">
