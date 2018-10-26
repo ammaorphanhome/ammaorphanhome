@@ -14,10 +14,13 @@
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/custom.css">
 
+    <script src="js/highlight.js"></script>
+
     <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.min.js"></script>
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body>
 
@@ -196,9 +199,16 @@ India.</span></li>
           </div>
         </div>
       </footer>
-<script src="js/scripts.min.js"></script>
-    <script src="js/main.min.js"></script>
-    <script src="js/custom.js"></script>
-    
+
+<!--      <script src="js/jquery-3.2.1.min.js"></script>-->
+
+
+
+
+
+      <script src="js/scripts.min.js"></script>
+      <script src="js/main.min.js"></script>
+      <script src="js/custom.js"></script>
+
   </body>
 </html>

@@ -23,7 +23,7 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
 	{ ?>
         <script type="text/javascript">
             //alert('Data Successfully Inserted');
-            window.location="test_payment.php?oid=<?php echo $insid;?>";
+            window.location="payment.php?oid=<?php echo $insid;?>";
         </script>
     <?php }  else { ?>
         <script type="text/javascript">
@@ -54,7 +54,9 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
       <script src="js/vendor/html5shiv.min.js"></script>
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
-  </head>
+    <script src="js/highlight.js"></script>
+
+</head>
   <body>
 
     
@@ -198,9 +200,8 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
           </div>
         </div>
       </footer>
-<script src="js/scripts.min.js"></script>
+    <script src="js/scripts.min.js"></script>
     <script src="js/main.min.js"></script>
     <script src="js/custom.js"></script>
-    
   </body>
 </html>

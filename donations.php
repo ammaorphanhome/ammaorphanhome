@@ -23,6 +23,7 @@ require "cw_admin/lib/config.php";
     <script src="js/vendor/html5shiv.min.js"></script>
     <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
+    <script src="js/highlight.js"></script>
 </head>
 <body>
 

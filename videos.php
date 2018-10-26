@@ -37,6 +37,7 @@ extract($_GET);
       <script src="js/vendor/html5shiv.min.js"></script>
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
+      <script src="js/highlight.js"></script>
   </head>
   <body>
 
@@ -138,9 +139,9 @@ India.</span></li>
           </div>
         </div>
       </footer>
-<script src="js/scripts.min.js"></script>
+    <script src="js/scripts.min.js"></script>
     <script src="js/main.min.js"></script>
     <script src="js/custom.js"></script>
-    
+
   </body>
 </html>
