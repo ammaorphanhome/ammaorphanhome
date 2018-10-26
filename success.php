@@ -190,6 +190,7 @@ require "cw_admin/lib/config.php";
 <script src="js/scripts.min.js"></script>
 <script src="js/main.min.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/highlight.js"></script>
 
 </body>
 </html>
