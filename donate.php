@@ -15,7 +15,7 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
 	}
 	//echo "INSERT INTO `orders`(`name`,`email`,`price`,`image`) VALUES ('$name','$email','$amount','$image')";exit;
 	
- $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`) VALUES ('$name','$email','$amount','$image','$msg','$mobile')");
+ $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`) VALUES ('$name','$email','$amount','$image','$msg','$mobile','$wishToSee')");
 
  $insid = $db->lastInsertId();
 
@@ -111,6 +111,12 @@ if(isset($_POST) && $_POST['submit']=='Donate') {
                   <div class="form-group">
                     <label for="amount">Upload Donar Photo</label>
                     <input type="file" class="form-control" id="amount" name="image">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="wishToSee">Do you wish see your donation in donations page?</label> <br/>
+                    <input type="radio" name="wishToSee" value="Yes" checked>Yes
+                    <input type="radio" name="wishToSee" value="No">No
                   </div>
 
                   <div class="form-group">

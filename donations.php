@@ -46,7 +46,7 @@ require "cw_admin/lib/config.php";
         <div class="col-md-12">
             <div><!--a href="ysa.php?action=add" class="btn btn-success"><i class="fa fa-lg fa-plus"></i>Add New</a--><!-- <a href="ysa.php?action=edit" class="btn btn-info btn-flat"><i class="fa fa-lg fa-edit"></i></a><a href="#" class="btn btn-warning btn-flat"><i class="fa fa-lg fa-trash"></i></a>--></div>
             <?php
-            $sth = $db->query ("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' ORDER BY `guid` DESC");
+            $sth = $db->query ("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' ORDER BY `guid` DESC");
             $count = $sth->rowCount(); ?>
             <div class="card">
                 <div class="card-body">
@@ -58,7 +58,6 @@ require "cw_admin/lib/config.php";
                                 <th>Amount</th>
                                 <th>Donated On</th>
                                 <th>Note</th>
-                                <th>Donar Photo</th>
                             </tr>
                         </thead>
 
@@ -74,12 +73,6 @@ require "cw_admin/lib/config.php";
                                     <td><?php echo $row[price]; ?></td>
                                     <td><?php echo $row[date]; ?></td>
                                     <td><?php echo $row[note]; ?></td>
-
-                                    <?php  if (empty($row[image])){  ?>
-                                        <td></td>
-                                    <?php  } else {  ?>
-                                        <td><img src="adminupload/<?php echo $row[image];?>" style="width:150px;height:150px"></td>
-                                    <?php  }  ?>
                                 </tr>
                                 <?php $m++; } } ?>
                         </tbody>
