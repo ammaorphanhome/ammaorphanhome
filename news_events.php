@@ -26,17 +26,6 @@
     
       <?php include('nav.php');?>
       
-       <!--<section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_3.jpg)"  data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn" style="padding-top: 160px;">
-                <h1 class="probootstrap-heading probootstrap-animate" style="font-size: 50px;">News and Events</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>-->
       <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
           <div class="container">
               <div class="row">
@@ -53,155 +42,33 @@
         <div class="container">
           <div class="row mb40">
             <div class="col-md-6 col-md-push-6 probootstrap-animate">
-              <p><img src="img/img_sq_1.jpg" class="img-responsive"></p>
+              <p><img src="img/news_1.jpg" class="img-responsive"></p>
             </div>
             <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
-              <h2 class="mb0">Consectetur Adipisicing Elit</h2>
-              <p class="probootstrap-news-date">July 20, 2017 by Admin</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt excepturi dicta ex, placeat ab esse, iure harum eaque fuga asperiores distinctio amet temporibus enim illum molestiae neque ad similique possimus repellendus velit! Quaerat nihil nemo, aliquam consectetur debitis illum. Excepturi cum, quaerat minus odit dolorem recusandae, debitis reprehenderit voluptate?</p>
-              <p><span class="probootstrap-meta-share"><a href="#"><i class="icon-redo2"></i> 14</a> <a href="#"><i class="icon-bubbles2"></i> 7</a></span></p>
+              <h2 class="mb0">Picnic and Fun at Park</h2>
+              <p class="probootstrap-news-date">Sep 25, 2018 by Admin</p>
+              <p>From the past couple of months few of the kids are getting sick frequently, So we requested  DMHO for a medical camp at our amma home. As we requested the Doctor’s generously arranged a medical camp for free for our amma home kids. This was big benefit for us because it could help us know to know health issues. They came over and took blood samples and other medical things. We thank from our bottom of the hearts to all who helped for this event.</p>
             </div>
           </div>
 
           <div class="row mb40">
             <div class="col-md-6 probootstrap-animate">
-              <p><img src="img/img_sq_2.jpg" class="img-responsive"></p>
+              <p><img src="img/news_2.jpg" class="img-responsive"></p>
             </div>
             <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
-              <h2 class="mb0"><a href="#">Aliquam Consectetur Debitis Illum</a></h2>
-              <p class="probootstrap-news-date">July 20, 2017 by Admin</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt excepturi dicta ex, placeat ab esse, iure harum eaque fuga asperiores distinctio amet temporibus enim illum molestiae neque ad similique possimus repellendus velit! Quaerat nihil nemo, aliquam consectetur debitis illum. Excepturi cum, quaerat minus odit dolorem recusandae, debitis reprehenderit voluptate?</p>
-              <p><span class="probootstrap-meta-share"><a href="#"><i class="icon-redo2"></i> 14</a> <a href="#"><i class="icon-bubbles2"></i> 7</a></span> </p>
+              <h2 class="mb0"><a href="#">Medical camp at Amma Home</a></h2>
+              <p class="probootstrap-news-date">Sep 15, 2018 by Admin</p>
+              <p>Today we all went to a Kothagudem Rudrampor park, there the kids had a lot of fun. This event made us exited and the kids had lot fun with games, photoshoot, dances and singing songs. And also kids played a lot of games like tag,kho-kho and more! Another thing that we enjoyed was the dancing and the singing. We danced to a few songs and some of our friends even sang songs with such amazing voices.  The last thing about the event was Photoshoot there we had a lot of fun giving the posses.</p>
             </div>
           </div>
-
-          <div class="row mb40">
-            <div class="col-md-6 col-md-push-6 probootstrap-animate">
-              <p><img src="img/img_sq_3.jpg" class="img-responsive"></p>
-            </div>
-            <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
-              <h2 class="mb0"><a href="#">Consectetur Adipisicing Elit</a></h2>
-              <p class="probootstrap-news-date">July 20, 2017 by Admin</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt excepturi dicta ex, placeat ab esse, iure harum eaque fuga asperiores distinctio amet temporibus enim illum molestiae neque ad similique possimus repellendus velit! Quaerat nihil nemo, aliquam consectetur debitis illum. Excepturi cum, quaerat minus odit dolorem recusandae, debitis reprehenderit voluptate?</p>
-              <p><span class="probootstrap-meta-share"><a href="#"><i class="icon-redo2"></i> 14</a> <a href="#"><i class="icon-bubbles2"></i> 7</a></span></p>
-            </div>
-          </div>
-
-          <div class="row mb40">
-            <div class="col-md-6 probootstrap-animate">
-              <p><img src="img/img_sq_4.jpg" class="img-responsive"></p>
-            </div>
-            <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
-              <h2 class="mb0"><a href="#">Aliquam Consectetur Debitis Illum</a></h2>
-              <p class="probootstrap-news-date">July 20, 2017 by Admin</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt excepturi dicta ex, placeat ab esse, iure harum eaque fuga asperiores distinctio amet temporibus enim illum molestiae neque ad similique possimus repellendus velit! Quaerat nihil nemo, aliquam consectetur debitis illum. Excepturi cum, quaerat minus odit dolorem recusandae, debitis reprehenderit voluptate?</p>
-              <p><span class="probootstrap-meta-share"><a href="#"><i class="icon-redo2"></i> 14</a> <a href="#"><i class="icon-bubbles2"></i> 7</a></span></p>
-            </div>
-          </div>
-
-          <div class="row mb40">
-            <div class="col-md-6 col-md-push-6 probootstrap-animate">
-              <p><img src="img/img_sq_5.jpg" class="img-responsive"></p>
-            </div>
-            <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
-              <h2 class="mb0"><a href="#">Consectetur Adipisicing Elit</a></h2>
-              <p class="probootstrap-news-date">July 20, 2017 by Admin</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt excepturi dicta ex, placeat ab esse, iure harum eaque fuga asperiores distinctio amet temporibus enim illum molestiae neque ad similique possimus repellendus velit! Quaerat nihil nemo, aliquam consectetur debitis illum. Excepturi cum, quaerat minus odit dolorem recusandae, debitis reprehenderit voluptate?</p>
-              <p><span class="probootstrap-meta-share"><a href="#"><i class="icon-redo2"></i> 14</a> <a href="#"><i class="icon-bubbles2"></i> 7</a></span></p>
-            </div>
-          </div>
-
-          <div class="row mb40">
-            <div class="col-md-6 probootstrap-animate">
-              <p><img src="img/img_sq_6.jpg" class="img-responsive"></p>
-            </div>
-            <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
-              <h2 class="mb0"><a href="#">Aliquam Consectetur Debitis Illum</a></h2>
-              <p class="probootstrap-news-date">July 20, 2017 by Admin</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt excepturi dicta ex, placeat ab esse, iure harum eaque fuga asperiores distinctio amet temporibus enim illum molestiae neque ad similique possimus repellendus velit! Quaerat nihil nemo, aliquam consectetur debitis illum. Excepturi cum, quaerat minus odit dolorem recusandae, debitis reprehenderit voluptate?</p>
-              <p><span class="probootstrap-meta-share"><a href="#"><i class="icon-redo2"></i> 14</a> <a href="#"><i class="icon-bubbles2"></i> 7</a></span></p>
-            </div>
-          </div>
-
-          <div class="row mb40">
-            <div class="col-md-6 col-md-push-6 probootstrap-animate">
-              <p><img src="img/img_sq_7.jpg" class="img-responsive"></p>
-            </div>
-            <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
-              <h2 class="mb0"><a href="#">Consectetur Adipisicing Elit</a></h2>
-              <p class="probootstrap-news-date">July 20, 2017 by Admin</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sunt excepturi dicta ex, placeat ab esse, iure harum eaque fuga asperiores distinctio amet temporibus enim illum molestiae neque ad similique possimus repellendus velit! Quaerat nihil nemo, aliquam consectetur debitis illum. Excepturi cum, quaerat minus odit dolorem recusandae, debitis reprehenderit voluptate?</p>
-              <p><span class="probootstrap-meta-share"><a href="#"><i class="icon-redo2"></i> 14</a> <a href="#"><i class="icon-bubbles2"></i> 7</a></span></p>
-            </div>
-          </div>
-
-
         </div>
       </section>
 
-	  
-	  
+    <?php include('footer.php');?>
 
-      <footer class="probootstrap-footer probootstrap-bg">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 probootstrap-animate">
-              <div class="probootstrap-footer-widget">
-                <h3>About Us</h3>
-                <p>Amma Orphanage, Known as the "Amma Anadha Saranalayam" is a non profit organisation Founded by Mr. E. Teja with the objective to provide solution to the orphans.</p>
-                <ul class="probootstrap-footer-social">
-                  <li><a href="#"><i class="icon-twitter"></i></a></li>
-                  <li><a href="#"><i class="icon-facebook"></i></a></li>
-                  <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                  <li><a href="#"><i class="icon-youtube"></i></a></li>
-                </ul>
-              </div>
-            </div>
-           
-            <div class="col-md-4 probootstrap-animate">
-              <div class="probootstrap-footer-widget">
-                <h3>Contact Info</h3>
-                <ul class="probootstrap-contact-info">
-                  <li><i class="icon-location2"></i> <span> #4-133, Hemachandrapuram, 
-Karukonda Gram Panchayat, 
-Kothagudem, Telangana, 
-India.</span></li>
-                  <li><i class="icon-mail"></i><span><a href="#" class="__cf_email__"> info@ammaorphanhome.org</a></span></li>
-                  <li><i class="icon-phone2"></i><span> +91 87907 82983</span></li>
-                </ul>
-                
-              </div>
-            </div>
-
-            <div class="col-md-4 probootstrap-animate">
-              <div class="probootstrap-footer-widget">
-                <h3>Location</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121747.16400080919!2d80.545156332736!3d17.526651455912013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3410a556a5bd1d%3A0x9716a9866e772f09!2sKothagudem%2C+Telangana!5e0!3m2!1sen!2sin!4v1537863488574" width="100%" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
-              </div>
-            </div>
-           
-          </div>
-          <!-- END row -->
-          
-        </div>
-
-        <div class="probootstrap-copyright">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8 text-left">
-                <p>&copy; 2018 <a href="#">Amma Orphanage</a>. All Rights Reserved.</p>
-              </div>
-              <div class="col-md-4 probootstrap-back-to-top">
-                <p><a href="#" class="js-backtotop">Back to top <i class="icon-arrow-long-up"></i></a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-<script src="js/scripts.min.js"></script>
+    <script src="js/scripts.min.js"></script>
     <script src="js/main.min.js"></script>
     <script src="js/custom.js"></script>
-
 
   </body>
 </html>
