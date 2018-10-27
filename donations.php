@@ -46,7 +46,7 @@ require "cw_admin/lib/config.php";
     <div class="container">
         <div class="col-md-12">
             <?php
-            $sth = $db->query ("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' ORDER BY `guid` DESC");
+            $sth = $db->query ("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' ORDER BY date DESC");
             $count = $sth->rowCount(); ?>
 
             <div class="row">
