@@ -6,7 +6,7 @@
 
     <body>
 
-        <?php include('nav.php'); ?>
+    <?php include('nav.php'); ?>
 
         <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_1.jpg)"
                  data-stellar-background-ratio="0.5">

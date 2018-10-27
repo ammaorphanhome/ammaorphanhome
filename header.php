@@ -7,6 +7,9 @@
     <link rel="icon" href="https://www.ammaorphanhome.org/img/favicon.png" type="image/png">
     <link rel="shortcut icon" href="https://www.ammaorphanhome.org/img/favicon.ico">
     <link rel="apple-touch-icon" type="image/png"  href="https://www.ammaorphanhome.org/img/favicon.png">
+    <link rel="shortcut icon" href="https://www.ammaorphanhome.org/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://www.ammaorphanhome.org/img/favicon.ico" type="image/x-icon">
+
 
     <link rel="apple-touch-icon" sizes="57x57" href="https://www.ammaorphanhome.org/img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="https://www.ammaorphanhome.org/img/favicon/apple-icon-60x60.png">
@@ -31,7 +34,7 @@
     <meta property="og:title" content="Amma Home">
     <meta property="og:url" content="https://www.ammaorphanhome.org/index.php">
     <meta property="og:description" content="Amma Orphan home: A Non Profitable Organizatin for Orphan Children">
-    <meta property="og:image" content="https://www.ammaorphanhome.org/img/favicon.png">
+    <meta property="og:image" content="https://www.ammaorphanhome.org/img/favicon/apple-icon-180x180.png">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="css/styles-merged.css">
