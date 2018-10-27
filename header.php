@@ -8,7 +8,7 @@
     <meta name="keywords" content="Amma Orphanage, Amma children home, Amma anadhasaranalayam">
     <meta property="og:title" content="Amma Home">
     <meta property="og:url" content="https://www.ammaorphanhome.org/index.php">
-    <meta property="og:description" content="Amma Orphan home is a non-profitable organizatin">
+    <meta property="og:description" content="Amma Orphan home: A Non Profitable Organizatin for Orphan Children">
     <meta property="og:image" content="https://www.ammaorphanhome.org/img/favicon.png">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
