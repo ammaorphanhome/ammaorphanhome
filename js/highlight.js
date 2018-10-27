@@ -1,11 +1,16 @@
 var highlightMenuLink = function() {
+    var linkFound = false;
     for (var i = 0; i < document.links.length; i++) {
         if(document.URL.endsWith("donate.php") || document.URL.endsWith("success.php")){
-            document.getElementsByTagName("li")[0].removeAttribute("class");
+            // Don't do anything.
+            linkFound = true;
         } else if (document.links[i].href == document.URL) {
-            document.getElementsByTagName("li")[0].removeAttribute("class");
             document.links[i].parentNode.className = 'active';
+            linkFound = true;
         }
+    }
+    if(document.URL.indexOf("ammaorphanhome.org") >= 0 && !linkFound){
+        document.getElementsByTagName("li")[0].className = 'active';
     }
 }
 
