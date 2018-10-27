@@ -20,7 +20,7 @@
                                 Karukonda Gram Panchayat,
                                 Kothagudem, Telangana,
                                 India.</span></li>
-                        <li><i class="icon-mail"></i><span><a href="#" class="__cf_email__"> info@ammaorphanhome.org</a></span></li>
+                        <li><i class="icon-mail"></i><span>info@ammaorphanhome.org</span></li>
                         <li><i class="icon-phone2"></i><span> +91 87907 82983</span></li>
                     </ul>
 
