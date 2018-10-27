@@ -33,10 +33,7 @@
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121747.16400080919!2d80.545156332736!3d17.526651455912013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3410a556a5bd1d%3A0x9716a9866e772f09!2sKothagudem%2C+Telangana!5e0!3m2!1sen!2sin!4v1537863488574" width="100%" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
-
         </div>
-        <!-- END row -->
-
     </div>
 
     <div class="probootstrap-copyright">
@@ -52,9 +49,3 @@
         </div>
     </div>
 </footer>
-
-
-
-<script src="js/scripts.min.js"></script>
-<script src="js/main.min.js"></script>
-<script src="js/custom.js"></script>

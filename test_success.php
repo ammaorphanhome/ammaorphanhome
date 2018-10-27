@@ -1,31 +1,16 @@
 <?php //print_r($_GET);
-require "cw_admin/lib/config.php";
+    require "cw_admin/lib/config.php";
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Amma Orphanage :: Yours Amma Anadha Sharanalayam</title>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
-        <link rel="stylesheet" href="css/styles-merged.css">
-        <link rel="stylesheet" href="css/style.min.css">
-        <link rel="stylesheet" href="css/custom.css">
+    <?php include('header.php'); ?>
 
-        <!--[if lt IE 9]>
-        <script src="js/vendor/html5shiv.min.js"></script>
-        <script src="js/vendor/respond.min.js"></script>
-        <![endif]-->
-    </head>
     <body>
-
-
-    <?php include('nav.php');?>
+        <?php include('nav.php'); ?>
 
         <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_1.jpg)"  data-stellar-background-ratio="0.5">
             <div class="container">
@@ -42,28 +27,27 @@ require "cw_admin/lib/config.php";
         <section class="probootstrap-section">
             <div class="container">
                 <?php //print_r($_GET);
+                    $pay_id=$_REQUEST['payment_id'];
+                    $req=$_REQUEST['payment_request_id'];
+                    //print_r($_REQUEST);
+                    $ch = curl_init();
 
-                $pay_id=$_REQUEST['payment_id'];
-                $req=$_REQUEST['payment_request_id'];
-                //print_r($_REQUEST);
-                $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, 'https://test.instamojo.com/api/1.1/payments/'.$pay_id.'/');
+                    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER,
+                        array("X-Api-Key:test_5f4292c874a5f602a115c0aa965",
+                            "X-Auth-Token:test_7aac381962a51a81aae0776e7c7"));
 
-                curl_setopt($ch, CURLOPT_URL, 'https://test.instamojo.com/api/1.1/payments/'.$pay_id.'/');
-                curl_setopt($ch, CURLOPT_HEADER, FALSE);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-                curl_setopt($ch, CURLOPT_HTTPHEADER,
-                    array("X-Api-Key:test_5f4292c874a5f602a115c0aa965",
-                        "X-Auth-Token:test_7aac381962a51a81aae0776e7c7"));
+                    $response = curl_exec($ch);
+                    curl_close($ch);
+                    $json=json_decode($response,TRUE);
 
-                $response = curl_exec($ch);
-                curl_close($ch);
-                $json=json_decode($response,TRUE);
-
-                if($json['success']==true){
-                    $payment=$json['payment'];
-                    $data =$db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."' ,payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
-                    ?>
+                    if($json['success']==true){
+                        $payment=$json['payment'];
+                        $data =$db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."' ,payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
+                ?>
                     <div class="row">
                         <div class="col-md-5 probootstrap-animate">
                             <form action="" method="post" enctype="multipart/form-data" class="probootstrap-form">
@@ -93,11 +77,11 @@ require "cw_admin/lib/config.php";
                             </form>
                         </div>
                 <?php
-                } else{
-                    echo "payment failed";
-                    $data = $db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."',  payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."'  WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
-                    ?>
-                    <div class="row">
+                    } else{
+                        echo "payment failed";
+                        $data = $db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."',  payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."'  WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
+                ?>
+                        <div class="row">
                         <div class="col-md-5 probootstrap-animate">
                             <form action="" method="post" enctype="multipart/form-data" class="probootstrap-form">
                                 <div class="form-group">
@@ -122,12 +106,12 @@ require "cw_admin/lib/config.php";
                             </form>
                         </div>
                 <?php
-                }
+                    }
                 ?>
-                    <div class="col-md-4 col-md-push-1 probootstrap-animate">
-                        <img src="img/thank_you_donate.jpg" class="img-responsive"/> <br/>
+                        <div class="col-md-4 col-md-push-1 probootstrap-animate">
+                            <img src="img/thank_you_donate.jpg" class="img-responsive"/> <br/>
+                        </div>
                     </div>
-                </div>
             </div>
         </section>
 
