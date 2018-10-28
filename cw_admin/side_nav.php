@@ -15,6 +15,9 @@ $add = substr($arr,0,-4);
               
             </div>
           </div>
+          <script> 
+			alert("action ==> " <?php echo $add; ?>);
+          </script>
           <!-- Sidebar Menu-->
           <ul class="sidebar-menu">
             <li class="<?php if($add==='home'){ echo "active"; }?>"><a href="home.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
@@ -27,10 +30,15 @@ $add = substr($arr,0,-4);
 			
 			<li class="<?php if($add==='Events'){ echo "active"; }?>"><a href="events.php"><i class="fa fa-photo"></i><span>Videos</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-user"></i><span>Website Donations</span></a></li>
+			<li class="<?php if($add==='News'){ echo "active"; }?>"><a href="news.php"><i class="fa fa-file"></i><span>News & Events</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="bankDonation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
+			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="manual_donation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
 			
+			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-user"></i><span>Successful Site Donations</span></a></li>
+			
+			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="failed_donations.php"><i class="fa fa-money"></i><span>Successful Site Donations</span></a></li>
+			
+		
 			
 			<!--li class="treeview"><a href="video.php"><i class="fa fa-laptop"></i><span>Tutorial content</span><i class="fa fa-angle-right"></i></a>
               <ul class="treeview-menu">

@@ -31,12 +31,12 @@ extract($_GET);
       <div class="content-wrapper">
         <div class="page-title">
 		
-          <div><h1>Website Successful Payment Details</h1></div>
+          <div><h1>Website Failed/Unsuccessful Payment Details</h1></div>
 			
 		<div>
             <ul class="breadcrumb">
               <li><i class="fa fa-home fa-lg"></i></li>
-              <li class="active"><a href="ysa.php">Payment Details </a></li>
+              <li class="active"><a href="failed_donations.php">Payment Details </a></li>
             </ul>
           </div>
           
@@ -49,9 +49,9 @@ extract($_GET);
 	   ?>
 	   
 		  <div class="col-md-12">
-		  <a href="<?php echo URL; ?>ysa.php" class="btn btn-info">Back</a>
+		  <a href="<?php echo URL; ?>failed_donations.php" class="btn btn-info">Back</a>
             <div class="card">
-              <h3 class="card-title"><?php echo $row[stdname]; ?> Website Donar - Payment Details/h3>
+              <h3 class="card-title"><?php echo $row[stdname]; ?> Website Failed/Unuccessful Payment Details</h3>
               <div class="card-body">
                 <form method="post" action="<?php echo $_SEVER['PHP_SELF'];?>" enctype="multipart/form-data">
                   
@@ -221,12 +221,12 @@ extract($_GET);
 	  else if($action == 'deleteData') {
 	  $q = $_GET['guid'];
 	  $vth = $db->query ("DELETE FROM `orders` WHERE `guid`='".$q."'" );
-	  header('location:'.URL.'ysa.php'); 
+	  header('location:'.URL.'failed_donations.php'); 
 	  } else { ?>
           <div class="col-md-12">
-		  <div><!--a href="ysa.php?action=add" class="btn btn-success"><i class="fa fa-lg fa-plus"></i>Add New</a--><!-- <a href="ysa.php?action=edit" class="btn btn-info btn-flat"><i class="fa fa-lg fa-edit"></i></a><a href="#" class="btn btn-warning btn-flat"><i class="fa fa-lg fa-trash"></i></a>--></div>
+		  <div><!--a href="failed_donations.php?action=add" class="btn btn-success"><i class="fa fa-lg fa-plus"></i>Add New</a--><!-- <a href="failed_donations.php?action=edit" class="btn btn-info btn-flat"><i class="fa fa-lg fa-edit"></i></a><a href="#" class="btn btn-warning btn-flat"><i class="fa fa-lg fa-trash"></i></a>--></div>
 		  <?php
-            $sth = $db->query ("SELECT * FROM `orders` where `address` != 'Manual' and payment_status = 'Credit' ORDER BY `guid` DESC");
+            $sth = $db->query ("SELECT * FROM `orders` where `address` != 'Manual' and payment_status != 'Credit' ORDER BY `guid` DESC");
 			$count = $sth->rowCount(); ?>
             <div class="card">
               <div class="card-body">
@@ -259,9 +259,9 @@ extract($_GET);
                       
                       <th><img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px"></th>
                       
-					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="ysa.php?action=viewDetails&guid=<?php echo $row[0]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
+					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="failed_donations.php?action=viewDetails&guid=<?php echo $row[0]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
 					  
-					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="<?php echo URL; ?>ysa.php?action=deleteData&guid=<?php echo $row[0]; ?>" class="btn btn-danger" onClick="return delete1();"><i class="fa fa-trash icon-only"></i></a> </div></td>
+					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="<?php echo URL; ?>failed_donations.php?action=deleteData&guid=<?php echo $row[0]; ?>" class="btn btn-danger" onClick="return delete1();"><i class="fa fa-trash icon-only"></i></a> </div></td>
                     </tr>
 	  <?php $m++; } } ?>
                   </tbody>
