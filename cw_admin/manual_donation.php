@@ -9,7 +9,7 @@ extract($_GET);
 
 <?php
     if(isset($_POST) && $_POST['submit']=='ADD') {
-        $today = date("Y-m-d");
+        $today = date("d-m-Y");
         ?>
 
         <?php
@@ -237,6 +237,7 @@ extract($_GET);
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
+                      <th>Donated On</th>
                       <th>Note</th>
                       <th>Donar Photo</th>
                       <th>View Details</th>
@@ -255,6 +256,7 @@ extract($_GET);
                       <td><?php echo $row[name];?> </td>
                       <td><?php echo $row[email]; ?></td>
                       <td><?php echo $row[mobile]; ?></td>
+                      <td><?php echo $row[date]; ?></td>
                       <td><?php echo $row[note]; ?></td>
                       
                       <th><img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px"></th>
