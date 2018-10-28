@@ -9,9 +9,17 @@ extract($_GET);
 
 <?php
     if(isset($_POST) && $_POST['submit']=='ADD') {
+        $today = date("Y-m-d");
         ?>
+
+
+            <script type="text/javascript">
+              			alert("<?php echo $today; ?>");
+            		</script>
+
         <?php
-        
+            
+            
             $filename = $_FILES['image']['name'];
             if(!empty($filename)) {
             	$image = time().$filename;
@@ -19,8 +27,9 @@ extract($_GET);
         	}
     	
     	   if($name !='' && $amount!= ''){
-    	       // $sth = $db->query("INSERT INTO `orders`(`name`, `email`, `price`, `image`, `note`, `mobile`, `location`,  `payment_status`) VALUES ('$name','$email','$amount','$image','$msg','$mobile', '$wishToSee',  'Credit')");
-    	       $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`, `payment_status`, `address` ) VALUES ('$name','$email','$amount','$image','$msg','$mobile', 'No', 'Credit', 'Manual' )");
+               $today = date("Y-m-d");
+
+               $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`, `payment_status`, `address`, `date`) VALUES ('$name','$email','$amount','$image','$msg','$mobile', '$wishToSee', 'Credit', 'Manual', '$today' )");
     	       
     	       $insid = $db->lastInsertId();
     	    
@@ -111,8 +120,8 @@ extract($_GET);
                                 </div>
     
                                 <div class="form-group">
-                                    <label for="amount" class="control-label">Amount</label>
-                                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Rs-1000.00" required>
+                                    <label for="amount" class="control-label">Donation Amount</label>
+                                    <input type="number" class="form-control" id="amount" name="amount" placeholder="₹1000.00" required>
                                 </div>
     
                                 <div class="form-group">
@@ -157,168 +166,51 @@ extract($_GET);
 		  <div class="col-md-12">
 		  <a href="<?php echo URL; ?>manual_donation.php" class="btn btn-info">Back</a>
             <div class="card">
-              <h3 class="card-title"><?php echo $row[stdname]; ?> Young Scientist Award Details</h3>
+              <h3 class="card-title"><?php echo $row[stdname]; ?> Successful Donation Details</h3>
               <div class="card-body">
-                <form method="post" action="<?php echo $_SEVER['PHP_SELF'];?>" enctype="multipart/form-data">
                   
-				  
-				  
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Is the nominee the main contributor to the paper?</label>
-                    <input readonly class="form-control" value=" <?php echo $row[1];?> ">
+                  <form method="post" action="<?php echo $_SEVER['PHP_SELF'];?>" enctype="multipart/form-data">
+                  
+				  <div class="form-group">
+                    <label class="control-label">Donar Name</label>
+                    <input readonly class="form-control" value=" <?php echo $row[name];?> ">
                   </div>
                  
-				
-				  
-                 <div class="form-group col-md-6">
-                    <label class="control-label">Title of The Paper</label>
-                    <input readonly class="form-control" value="<?php echo $row[2];?>">
+                 <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <input readonly class="form-control" value="<?php echo $row[email];?>">
                   </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">Ref# of the Paper</label>
-                    <input readonly class="form-control" value="<?php echo $row[3];?>">
+                  <div class="form-group">
+                    <label class="control-label">Phone</label>
+                    <input readonly class="form-control" value="<?php echo $row[mobile];?>">
                   </div>
 				 
 				  
-				   <div class="form-group col-md-6">
-                    <label class="control-label">Title of The Nominee</label>
-                    <input readonly class="form-control" value="<?php echo $row[4];?>">
+				   <div class="form-group">
+                    <label class="control-label">Donation Amount</label>
+                    <input readonly class="form-control" value="<?php echo $row[price];?>">
                   </div>
 				  
-				  
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Full Name of The Nominee</label>
-                    <textarea readonly class="form-control"><?php echo $row[5];?></textarea>
+				  <div class="form-group">
+                    <label class="control-label">Do you wish see your donation in donations page?</label>
+                    <textarea readonly class="form-control"><?php echo $row[location];?></textarea>
                   </div>
-                 
-				
-				  
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Organization of the Nominee</label>
-                    <textarea readonly class="form-control"><?php echo $row[6];?></textarea>
+
+                  <div class="form-group">
+                    <label for="message" class="control-label">Donar Notes</label>
+                    <textarea readonly cols="30" rows="8" class="form-control" name="note" id="note" ></textarea>
                   </div>
-				  
-				  
-				    <div class="form-group col-md-6">
-                    <label class="control-label">Country of the Nominee</label>
-                    <textarea readonly class="form-control"><?php echo $row[7];?></textarea>
-                  </div>
-				    <div class="form-group col-md-6">
-                    <label class="control-label">Email of the Nominee</label>
-                    <textarea readonly class="form-control"><?php echo $row[8];?></textarea>
-                  </div>
-				  
-				    <div class="form-group col-md-6">
-                    <label class="control-label">Age of the Nominee</label>
-                    <textarea readonly class="form-control"><?php echo $row[9];?></textarea>
-                  </div>
-				  
-				    <div class="form-group col-md-6">
-                    <label class="control-label">Is the nominee a Ph.D. student? </label>
-                    <textarea readonly class="form-control"><?php echo $row[10];?></textarea>
-                  </div>  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Name of PhD supervisor of the nominee</label>
-                    <textarea readonly class="form-control"><?php echo $row[11];?></textarea>
-                  </div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Organization of the supervisor of the nominee</label>
-                    <textarea readonly class="form-control"><?php echo $row[12];?></textarea>
-                  </div>
-                
-				  
-				  
-                  <!--div class="form-group col-md-6">
-                    <label class="control-label">Citizenship </label>
-                    <input readonly class="form-control" value="<?php echo $row[stdcitizenship];?>">
-                  </div>
-				  <div class="clearfix"></div>
                   
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Student Passport Number</label>
-                    <input readonly class="form-control" value="<?php echo $row[stdpassport];?>">
+                  <div class="form-grou">
+                    <label class="control-label">Photo</label></br>
+                    <img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px">
                   </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">Parent / Guardian Name </label>
-                    <input readonly class="form-control" value="<?php echo $row[stdparent];?>">
-                  </div>
+
+				  <script>
+	   				document.getElementById("note").value = '<?php echo $row[note]; ?>';
+	   	  		  </script>
+	   	  		  
 				  <div class="clearfix"></div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Parent / Guardian Address </label>
-                    <textarea readonly class="form-control"><?php echo $row[stdparentaddress];?></textarea>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">Parent / Guardian Occupation</label>
-                    <input readonly class="form-control" value="<?php echo $row[stdparentoccupation];?>">
-                  </div>
-				  <div class="clearfix"></div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Parent / Guardian Tel No / Mobile No</label>
-                    <input readonly class="form-control" value="<?php echo $row[stdparentmobile];?>">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">Educational Qualification </label>
-                    <input readonly class="form-control" value="<?php echo $row[stdeducation];?>">
-                  </div>
-				  <div class="clearfix"></div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Name of School / College / University Last Attended </label>
-                    <input readonly class="form-control" value="<?php echo $row[school_college_university];?>">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">Diploma / Degree / Certificate Obtained </label>
-                    <input readonly class="form-control" value="<?php echo $row[stdcertificate];?>">
-                  </div>
-				  <div class="clearfix"></div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Year Of Completion</label>
-                    <input readonly class="form-control" value="<?php echo $row[stdyear];?>">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">Course for Study Applied For </label>
-                    <input readonly class="form-control" value="<?php echo $row[stdcourse];?>">
-                  </div>
-				  <div class="clearfix"></div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Medium</label>
-                    <input readonly class="form-control" value="<?php echo $row[stdmedium];?>">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">University Applied </label>
-                    <input readonly class="form-control" value="<?php echo $row[stduniversity_applied];?>">
-                  </div>
-				  <div class="clearfix"></div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Mother Tongue</label>
-                    <input readonly class="form-control" value="<?php echo $row[stdmtongue];?>">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label class="control-label">Language Used in your Secondary Education </label>
-                    <input readonly class="form-control" value="<?php echo $row[stdlangsec];?>">
-                  </div>
-				  <div class="clearfix"></div>
-				  
-				  <div class="form-group col-md-6">
-                    <label class="control-label">Language Used in your Higher Secondary Education</label>
-                    <input readonly class="form-control" value="<?php echo $row[stdlanghigher];?>">
-                  </div-->
-                  
-				  <div class="clearfix"></div>
-				  
-			<!--div class="card-footer">
-				  <input type="hidden" name="qid" value="<?php echo $q; ?>">
-                <button type="submit" name="submit" value="EDIT" class="btn btn-primary icon-btn"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update</button>&nbsp;&nbsp;&nbsp;<button type="reset" href="#" class="btn btn-warning"><i class="fa fa-fw fa-lg fa-times-circle"></i>Reset</button>
-              </div-->
                 </form>
               </div>
             </div>

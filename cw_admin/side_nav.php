@@ -34,9 +34,9 @@ $add = substr($arr,0,-4);
 			
 			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="manual_donation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-user"></i><span>Successful Site Donations</span></a></li>
+			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-check"></i><span>Successful Site Donations</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="failed_donations.php"><i class="fa fa-money"></i><span>Successful Site Donations</span></a></li>
+			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="failed_donations.php"><i class="fa fa-times"></i><span>Failed Site Donations</span></a></li>
 			
 		
 			
