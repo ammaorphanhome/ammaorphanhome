@@ -21,7 +21,7 @@ extract($_GET);
         	}
     	
     	   if($name !='' && $amount!= ''){
-               $today = date("d-m-Y");
+               $today = date("Y-m-d");
 
                $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`, `payment_status`, `address`, `date`) VALUES ('$name','$email','$amount','$image','$msg','$mobile', '$wishToSee', 'Credit', 'Manual', '$today' )");
     	       
