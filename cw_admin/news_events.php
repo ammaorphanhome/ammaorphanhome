@@ -20,19 +20,19 @@ extract($_GET);
     	
         	if($shortDescription !='' && $msg!= ''){
     	       
-    	       $sth = $db->query("INSERT INTO `news`(`title`, `short_description`, `image`, , `description`) VALUES ('$title', '$shortDescription', '$image' , '$msg')");
+    	       $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`) VALUES ('$title', '$shortDescription', '$image' , '$msg')");
     	       
     	       $insid = $db->lastInsertId();
     	    
     	       
     	       if($sth == true)  { ?> 
     	    		<script type="text/javascript">
-              			alert('Payment details successfully added');
+              			alert('News and Event details successfully added');
               			window.location="<?php echo URL; ?>news_events.php";
             		</script>
     	    <?php } else { ?>
     	    		<script type="text/javascript">
-      					alert('Payment details are not added, Please try Again');
+      					alert('News and Event are not added, Please try Again');
               			window.location="<?php echo URL; ?>news_events.php";
     		 		</script>
     	    <?php } ?>
