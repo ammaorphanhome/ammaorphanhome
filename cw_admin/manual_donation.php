@@ -12,13 +12,7 @@ extract($_GET);
         $today = date("Y-m-d");
         ?>
 
-
-            <script type="text/javascript">
-              			alert("<?php echo $today; ?>");
-            		</script>
-
         <?php
-            
             
             $filename = $_FILES['image']['name'];
             if(!empty($filename)) {

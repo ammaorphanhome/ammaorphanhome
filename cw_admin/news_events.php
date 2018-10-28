@@ -105,7 +105,7 @@ extract($_GET);
                                 
                                 <div class="form-group" class="control-label">
                                     <label for="message">Note</label>
-                                    <textarea cols="30" rows="8" class="form-control" id="message" name="description"
+                                    <textarea cols="30" rows="8" class="form-control" id="description" name="description"
                                               placeholder="Enter Decription for News & Events"></textarea>
                                 </div>
     
@@ -134,15 +134,15 @@ extract($_GET);
 	       $sth = $db->query ('SELECT * FROM `news` WHERE `guid`="'.$q.'"');
 	       $row = $sth->fetch();
 	  ?>
-	   
+	   		
+				  
 		  <div class="col-md-12">
 		  <a href="<?php echo URL; ?>news_events.php" class="btn btn-info">Back</a>
             <div class="card">
-              <h3 class="card-title"><?php echo $row[title]; ?> - News and Event Details</h3>
+              <h3 class="card-title"><?php echo $row[title]; ?></h3>
               <div class="card-body">
                 <form method="post" action="<?php echo $_SEVER['PHP_SELF'];?>" enctype="multipart/form-data">
                   
-				  
 				  
 				  <div class="form-group">
                     <label class="control-label">Short description</label>
@@ -151,21 +151,19 @@ extract($_GET);
                  
                 
                   <div class="form-group">
-                    <label for="message" class="control-label">Description</label>
-                    <textarea readonly cols="30" rows="8" class="form-control"  name="description" id="description"></textarea>
+                    <label for="description" class="control-label">Description</label>
+                    <textarea readonly cols="30" rows="8" class="form-control" name="description" id="description"><?php echo $row[description];?></textarea>
                   </div>
+                  
                   
                   <div class="form-group">
                     <label class="control-label">Photo</label></br>
                     <img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px">
                   </div>
+
                   
 				  <div class="clearfix"></div>
-				  
-				  <script>
-	   				document.getElementById("description").value = '<?php echo $row[description]; ?>';
-	   	  		  </script>   
-        	   	  		  
+	   	  		     
                 </form>
               </div>
             </div>
@@ -173,7 +171,6 @@ extract($_GET);
 		  <?php } 
 		else if(isset($_POST) && $_POST['submit']=='Edit')
 		  {
-		      echo $qid;
 		      $aid= $_POST['aid'];
 		      $filename = stripslashes($_FILES['image']['name']);
 		      if(!empty($filename)) {
@@ -241,7 +238,7 @@ extract($_GET);
                         
                           <div class="form-group">
                             <label for="message" class="control-label">Description</label>
-                            <textarea cols="30" rows="8" class="form-control" name="description" id="description" ></textarea>
+                            <textarea cols="30" rows="8" class="form-control" name="description" id="description" ><?php echo $row[description];?></textarea>
                           </div>
 
         			  	  <div class="form-group">
@@ -256,9 +253,6 @@ extract($_GET);
         				  
         				  <div class="clearfix"></div>
         				  
-        				  <script>
-        	   				document.getElementById("description").value = '<?php echo $row[description]; ?>';
-        	   	  		  </script>   
         	   	  		  
         				  <div class="card-footer">
         				    <input type="hidden" name="qid" value="<?php echo $guid; ?>">
@@ -320,7 +314,7 @@ extract($_GET);
                       
                       <th><img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px"></th>
                       
-					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="news_events.php?action=viewDetails&guid=<?php echo $row[0]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
+					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="news_events.php?action=viewDetails&guid=<?php echo $row[guid]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
 					  
 					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="<?php echo URL; ?>news_events.php?action=edit&guid=<?php echo $row[guid]; ?>" class="btn btn-primary icon-btn">Edit </a> <a href="<?php echo URL; ?>news_events.php?action=deleteData&guid=<?php echo $row[0]; ?>" class="btn btn-danger" onClick="return delete1();"><i class="fa fa-trash icon-only"></i></a> </div></td>
                     </tr>
