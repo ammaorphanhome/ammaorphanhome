@@ -152,10 +152,10 @@ extract($_GET);
                 
                   <div class="form-group">
                     <label for="message" class="control-label">Description</label>
-                    <textarea readonly cols="30" rows="8" class="form-control"  id="decription"></textarea>
+                    <textarea readonly cols="30" rows="8" class="form-control"  name="description" id="description"></textarea>
                   </div>
                   
-                  <div class="form-group>
+                  <div class="form-group">
                     <label class="control-label">Photo</label></br>
                     <img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px">
                   </div>
@@ -163,9 +163,9 @@ extract($_GET);
 				  <div class="clearfix"></div>
 				  
 				  <script>
-	   				document.getElementById("decription").value = '<?php echo $row[description]; ?>';
-	   	  		  </script>
-				  
+	   				document.getElementById("description").value = '<?php echo $row[description]; ?>';
+	   	  		  </script>   
+        	   	  		  
                 </form>
               </div>
             </div>
@@ -184,13 +184,6 @@ extract($_GET);
 		          $image = time()."_".$filename;
 		          move_uploaded_file($_FILES['image']['tmp_name'],"../adminupload/".$image);
 		          
-		          echo "Uploaded an image";
-		          echo $title;
-		          echo $shortDescription;
-		          echo $description;
-		          echo $image;
-		          echo "current 1540732831DSC_0498.JPG";
-		          
 		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `short_description`='$shortDescription' , `description`='$description' , `image`='$image'  WHERE `guid`='$qid'");
 		          
 		          if($sth == true) { ?>
@@ -206,11 +199,6 @@ extract($_GET);
             	  <?php } 
 		          
 		      } else {
-		          
-		          echo "No image";
-		          echo $title;
-		          echo $shortDescription;
-		          echo $description;
 		          
 		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `short_description`='$shortDescription' , `description`='$description'  WHERE `guid`='$qid'");
 		          
@@ -253,7 +241,7 @@ extract($_GET);
                         
                           <div class="form-group">
                             <label for="message" class="control-label">Description</label>
-                            <textarea cols="30" rows="8" class="form-control" name="description" id="decription"  value=" <?php echo $row[description];?> " ></textarea>
+                            <textarea cols="30" rows="8" class="form-control" name="description" id="description" ></textarea>
                           </div>
 
         			  	  <div class="form-group">
@@ -261,7 +249,7 @@ extract($_GET);
                             <input type="file" class="form-control" id="photo" accept=".jpg, .jpeg" name="image">
                           </div>
                                 
-        			      <div class="form-group>
+        			      <div class="form-group">
                             <label class="control-label">Previous Photo</label></br>
                             <img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px">
                           </div>
@@ -269,7 +257,7 @@ extract($_GET);
         				  <div class="clearfix"></div>
         				  
         				  <script>
-        	   				document.getElementById("decription").value = '<?php echo $row[description]; ?>';
+        	   				document.getElementById("description").value = '<?php echo $row[description]; ?>';
         	   	  		  </script>   
         	   	  		  
         				  <div class="card-footer">
