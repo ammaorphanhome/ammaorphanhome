@@ -30,7 +30,7 @@ $add = substr($arr,0,-4);
 			
 			<li class="<?php if($add==='Events'){ echo "active"; }?>"><a href="events.php"><i class="fa fa-photo"></i><span>Videos</span></a></li>
 			
-			<li class="<?php if($add==='News'){ echo "active"; }?>"><a href="news.php"><i class="fa fa-file"></i><span>News & Events</span></a></li>
+			<li class="<?php if($add==='News'){ echo "active"; }?>"><a href="news_events.php"><i class="fa fa-file"></i><span>News & Events</span></a></li>
 			
 			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="manual_donation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
 			
