@@ -27,9 +27,9 @@ $add = substr($arr,0,-4);
 			
 			<li class="<?php if($add==='Events'){ echo "active"; }?>"><a href="events.php"><i class="fa fa-photo"></i><span>Videos</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-user"></i><span>Payments</span></a></li>
+			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-user"></i><span>Website Donations</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="bankDonation.php"><i class="fa fa-money"></i><span>Enter Donation</span></a></li>
+			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="bankDonation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
 			
 			
 			<!--li class="treeview"><a href="video.php"><i class="fa fa-laptop"></i><span>Tutorial content</span><i class="fa fa-angle-right"></i></a>

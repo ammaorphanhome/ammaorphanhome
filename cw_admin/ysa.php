@@ -31,7 +31,7 @@ extract($_GET);
       <div class="content-wrapper">
         <div class="page-title">
 		
-          <div><h1>Payment Details</h1></div>
+          <div><h1>Website Payment Details</h1></div>
 			
 		<div>
             <ul class="breadcrumb">
@@ -226,7 +226,7 @@ extract($_GET);
           <div class="col-md-12">
 		  <div><!--a href="ysa.php?action=add" class="btn btn-success"><i class="fa fa-lg fa-plus"></i>Add New</a--><!-- <a href="ysa.php?action=edit" class="btn btn-info btn-flat"><i class="fa fa-lg fa-edit"></i></a><a href="#" class="btn btn-warning btn-flat"><i class="fa fa-lg fa-trash"></i></a>--></div>
 		  <?php
-            $sth = $db->query ("SELECT * FROM `orders` ORDER BY `guid` DESC");
+            $sth = $db->query ("SELECT * FROM `orders` where `address` != 'Manual'  ORDER BY `guid` DESC");
 			$count = $sth->rowCount(); ?>
             <div class="card">
               <div class="card-body">
