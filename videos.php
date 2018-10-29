@@ -30,6 +30,12 @@
 
         <section class="probootstrap-section">
             <div class="container">
+                <div class="row mb40">
+                    <div class="col-md-12">
+                        <h3> Amma Orphan Home Videos</h3>
+                    </div>
+                </div>
+
                 <div class="row probootstrap-gutter10">
                     <?php $m = 1;
                         $sth = $db->query("SELECT * FROM `events`");

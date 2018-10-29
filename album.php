@@ -18,15 +18,22 @@
 
         <section class="probootstrap-hero probootstrap-hero-inner" style="background-image: url(img/hero_bg_bw_3.jpg)"
                  data-stellar-background-ratio="0.5">
+            <?php
+                $sth = $db->query("SELECT * FROM `past_conferences` where `guid`='$id'")->fetch();
+                echo $sth[name];
+            ?>
             <div class="container">
+                <div class="row mb40">
+                    <div class="col-md-12">
+                        <h3><?php  echo $sth[name]; ?> - Album</h3>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn"
                              style="padding-top: 160px;">
-                            <h1 class="probootstrap-heading probootstrap-animate" style="font-size: 50px;"><?php
-                                $sth = $db->query("SELECT * FROM `past_conferences` where `guid`='$id'")->fetch();
-                                echo $sth[name];
-                                ?></h1>
+                            <h1 class="probootstrap-heading probootstrap-animate" style="font-size: 50px;"><?php echo $sth[name]; ?> - Album</h1>
                         </div>
                     </div>
                 </div>

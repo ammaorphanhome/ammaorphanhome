@@ -30,6 +30,12 @@
 
         <section class="probootstrap-section">
             <div class="container">
+                <div class="row mb40">
+                    <div class="col-md-12">
+                        <h3> Amma Orphan Home Albums - Click on individual Album for more photos.</h3>
+                    </div>
+                </div>
+
                 <div class="row probootstrap-gutter10">
                     <?php
                     $sth = $db->query("SELECT * FROM `past_conferences` ORDER BY `guid` DESC");
