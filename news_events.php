@@ -67,35 +67,35 @@ require "cw_admin/lib/config.php";
                             </div>
 
                     <?php } else { ?>
+                            <div class="row mb40">
+                                <?php  if (empty($row[image])){  ?>
+                                    <div class="col-md-12">
+                                        <h2 class="mb0"><?php echo $row[title]; ?></h2>
+                                        <?php  if (empty($row[date])) {
+                                        } else {
+                                            $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
+                                        <?php } ?>
+                                        <p><?php echo $description; ?></p>
+                                    </div>
+                                <?php  } else {  ?>
+                                    <div class="col-md-6 probootstrap-animate">
+                                        <p><img src="adminupload/<?php echo $row[image];?>" class="img-responsive"></p>
+                                    </div>
 
-                            <?php  if (empty($row[image])){  ?>
-                                <div class="col-md-12">
-                                    <h2 class="mb0"><?php echo $row[title]; ?></h2>
-                                    <?php  if (empty($row[date])) {
-                                    } else {
-                                        $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
-                                    <?php } ?>
-                                    <p><?php echo $description; ?></p>
-                                </div>
-                            <?php  } else {  ?>
-                                <div class="col-md-6 probootstrap-animate">
-                                    <p><img src="adminupload/<?php echo $row[image];?>" class="img-responsive"></p>
-                                </div>
+                                    <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
+                                        <h2 class="mb0"><?php echo $row[title]; ?></h2>
 
-                                <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
-                                    <h2 class="mb0"><?php echo $row[title]; ?></h2>
+                                        <?php  if (empty($row[date])) {
+                                        } else {
+                                            $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
+                                        <?php } ?>
 
-                                    <?php  if (empty($row[date])) {
-                                    } else {
-                                        $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
-                                    <?php } ?>
+                                        <p><?php echo $row[description]; ?></p>
+                                    </div>
 
-                                    <p><?php echo $row[description]; ?></p>
-                                </div>
-
-                            <?php  }  ?>
+                                <?php  }  ?>
                             </div>
                      <?php }
                         $m++;
