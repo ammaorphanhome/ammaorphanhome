@@ -1,3 +1,9 @@
+<?php ob_start();
+error_reporting(0);
+
+require "cw_admin/lib/config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
@@ -24,36 +30,77 @@
 
         <section class="probootstrap-section">
             <div class="container">
-                <div class="row mb40">
-                    <div class="col-md-6 col-md-push-6 probootstrap-animate">
-                        <p><img src="img/news_1.jpg" class="img-responsive"></p>
-                    </div>
-                    <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
-                        <h2 class="mb0">Picnic and Fun at Park</h2>
-                        <p class="probootstrap-news-date">Sep 25, 2018 by Admin</p>
-                        <p>From the past couple of months few of the kids are getting sick frequently, So we requested DMHO for
-                            a medical camp at our amma home. As we requested the Doctor’s generously arranged a medical camp for
-                            free for our amma home kids. This was big benefit for us because it could help us know to know
-                            health issues. They came over and took blood samples and other medical things. We thank from our
-                            bottom of the hearts to all who helped for this event.</p>
-                    </div>
-                </div>
+                <?php
+                $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 8");
+                $count = $sth->rowCount();
+                if ($count > 0) {
+                    $m = 1;
+                    while ($row = $sth->fetch()) {
+                        if($m % 2 == 0) { ?>
+                            <div class="row mb40">
+                                <?php  if (empty($row[image])){  ?>
+                                    <div class="col-md-12">
+                                        <h2 class="mb0"><?php echo $row[title]; ?></h2>
+                                        <?php  if (empty($row[date])) {
+                                        } else {
+                                            $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                        <?php } ?>
+                                        <p><?php echo $description; ?></p>
+                                    </div>
+                                <?php  } else {  ?>
+                                    <div class="col-md-6 col-md-push-6 probootstrap-animate">
+                                        <p><img src="adminupload/<?php echo $row[image];?>" class="img-responsive"></p>
+                                    </div>
 
-                <div class="row mb40">
-                    <div class="col-md-6 probootstrap-animate">
-                        <p><img src="img/news_2.jpg" class="img-responsive"></p>
-                    </div>
-                    <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
-                        <h2 class="mb0"><a href="#">Medical camp at Amma Home</a></h2>
-                        <p class="probootstrap-news-date">Sep 15, 2018 by Admin</p>
-                        <p>Today we all went to a Kothagudem Rudrampor park, there the kids had a lot of fun. This event made us
-                            exited and the kids had lot fun with games, photoshoot, dances and singing songs. And also kids
-                            played a lot of games like tag,kho-kho and more! Another thing that we enjoyed was the dancing and
-                            the singing. We danced to a few songs and some of our friends even sang songs with such amazing
-                            voices. The last thing about the event was Photoshoot there we had a lot of fun giving the
-                            posses.</p>
-                    </div>
-                </div>
+                                    <div class="col-md-5 col-md-pull-6 news-entry probootstrap-animate">
+                                        <h2 class="mb0"><?php echo $row[title]; ?></h2>
+                                        <?php  if (empty($row[date])) {
+                                        } else {
+                                            $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                        <?php } ?>
+                                        <p><?php echo $description; ?></p>
+                                    </div>
+
+                                <?php  }  ?>
+                            </div>
+
+                    <?php } else { ?>
+
+                            <?php  if (empty($row[image])){  ?>
+                                <div class="col-md-12">
+                                    <h2 class="mb0"><?php echo $row[title]; ?></h2>
+                                    <?php  if (empty($row[date])) {
+                                    } else {
+                                        $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                    <?php } ?>
+                                    <p><?php echo $description; ?></p>
+                                </div>
+                            <?php  } else {  ?>
+                                <div class="col-md-6 probootstrap-animate">
+                                    <p><img src="adminupload/<?php echo $row[image];?>" class="img-responsive"></p>
+                                </div>
+
+                                <div class="col-md-5 col-md-push-1  news-entry probootstrap-animate">
+                                    <h2 class="mb0"><?php echo $row[title]; ?></h2>
+
+                                    <?php  if (empty($row[date])) {
+                                    } else {
+                                        $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                    <?php } ?>
+
+                                    <p><?php echo $description; ?></p>
+                                </div>
+
+                            <?php  }  ?>
+                            </div>
+                     <?php }
+                        $m++;
+                    }
+                } ?>
             </div>
         </section>
 
