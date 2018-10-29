@@ -44,7 +44,7 @@ require "cw_admin/lib/config.php";
                                         <?php  if (empty($row[date])) {
                                         } else {
                                             $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
                                         <?php } ?>
                                         <p><?php echo $description; ?></p>
                                     </div>
@@ -58,7 +58,7 @@ require "cw_admin/lib/config.php";
                                         <?php  if (empty($row[date])) {
                                         } else {
                                             $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                            <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
                                         <?php } ?>
                                         <p><?php echo $row[description]; ?></p>
                                     </div>
