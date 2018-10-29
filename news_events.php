@@ -36,7 +36,7 @@ require "cw_admin/lib/config.php";
                 if ($count > 0) {
                     $m = 1;
                     while ($row = $sth->fetch()) {
-                        if($m % 2 == 0) { ?>
+                        if($m % 2 != 0) { ?>
                             <div class="row mb40">
                                 <?php  if (empty($row[image])){  ?>
                                     <div class="col-md-12">
@@ -60,7 +60,7 @@ require "cw_admin/lib/config.php";
                                             $newDate = date("F jS, Y", strtotime($row[date])); ?>
                                             <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
                                         <?php } ?>
-                                        <p><?php echo $description; ?></p>
+                                        <p><?php echo $row[description]; ?></p>
                                     </div>
 
                                 <?php  }  ?>
@@ -74,7 +74,7 @@ require "cw_admin/lib/config.php";
                                     <?php  if (empty($row[date])) {
                                     } else {
                                         $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
                                     <?php } ?>
                                     <p><?php echo $description; ?></p>
                                 </div>
@@ -89,10 +89,10 @@ require "cw_admin/lib/config.php";
                                     <?php  if (empty($row[date])) {
                                     } else {
                                         $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> by Admin</p>
+                                        <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
                                     <?php } ?>
 
-                                    <p><?php echo $description; ?></p>
+                                    <p><?php echo $row[description]; ?></p>
                                 </div>
 
                             <?php  }  ?>
