@@ -76,7 +76,7 @@ require "cw_admin/lib/config.php";
                                             $newDate = date("F jS, Y", strtotime($row[date])); ?>
                                             <p class="probootstrap-news-date"><?php echo $newDate; ?> - by Admin</p>
                                         <?php } ?>
-                                        <p><?php echo $description; ?></p>
+                                        <p><?php echo $row[description]; ?></p>
                                     </div>
                                 <?php  } else {  ?>
                                     <div class="col-md-6 probootstrap-animate">
