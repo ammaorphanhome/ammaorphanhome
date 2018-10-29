@@ -169,7 +169,7 @@
                             <div class="col-md-3 probootstrap-animate">
                                 <h3>News and Events </h3>
                                 <?php
-                                $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 8");
+                                $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 2");
                                 $count = $sth->rowCount();
                                 if ($count > 0) {
                                     $m = 1;

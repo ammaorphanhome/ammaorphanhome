@@ -68,7 +68,7 @@
 
                 <div class="row mb10">
                     <div class="col-md-12">
-                        <h3><a href="photos.php">Back to Gallery</a></h3>
+                        <p><a href="photos.php" class="btn btn-primary">Back to Gallery</a></p>
                     </div>
                 </div>
             </div>
