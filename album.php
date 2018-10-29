@@ -36,7 +36,7 @@
 
         <section class="probootstrap-section">
             <div class="container">
-                <div class="row mb10">
+                <div class="row mb10 probootstrap-gutter10">
                     <div class="col-md-12">
                         <h3><?php  echo $sth[name]; ?> - Album</h3>
                     </div>
