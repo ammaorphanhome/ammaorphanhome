@@ -9,6 +9,8 @@ extract($_GET);
 
 <?php
     if(isset($_POST) && $_POST['submit']=='ADD') {
+        $today = date("Y-m-d");
+
         ?>
         <?php
         
