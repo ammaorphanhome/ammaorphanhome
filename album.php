@@ -36,12 +36,12 @@
 
         <section class="probootstrap-section">
             <div class="container">
-                <div class="row mb40">
+                <div class="row mb10">
                     <div class="col-md-12">
                         <h3><?php  echo $sth[name]; ?> - Album</h3>
                     </div>
                 </div>
-                <div class="row probootstrap-gutter10">
+                <div class="row mb10 probootstrap-gutter10">
                     <?php $m = 1;
                         $sth = $db->query("SELECT * FROM `album`  WHERE id='$id'");
                         $count = $sth->rowCount();
@@ -64,6 +64,12 @@
 
                     <?php }
                     } ?>
+                </div>
+
+                <div class="row mb10">
+                    <div class="col-md-12">
+                        <h3><a href="photos.php">Back to Gallery</a></h3>
+                    </div>
                 </div>
             </div>
         </section>

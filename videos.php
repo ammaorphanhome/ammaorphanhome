@@ -30,7 +30,7 @@
 
         <section class="probootstrap-section">
             <div class="container">
-                <div class="row mb40">
+                <div class="row mb10">
                     <div class="col-md-12">
                         <h3> Amma Orphan Home Videos</h3>
                     </div>
