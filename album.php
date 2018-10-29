@@ -23,17 +23,11 @@
                 echo $sth[name];
             ?>
             <div class="container">
-                <div class="row mb40">
-                    <div class="col-md-12">
-                        <h3><?php  echo $sth[name]; ?> - Album</h3>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn"
                              style="padding-top: 160px;">
-                            <h1 class="probootstrap-heading probootstrap-animate" style="font-size: 50px;"><?php echo $sth[name]; ?> - Album</h1>
+                            <h1 class="probootstrap-heading probootstrap-animate" style="font-size: 50px;"><?php echo $sth[name]; ?></h1>
                         </div>
                     </div>
                 </div>
@@ -42,6 +36,11 @@
 
         <section class="probootstrap-section">
             <div class="container">
+                <div class="row mb40">
+                    <div class="col-md-12">
+                        <h3><?php  echo $sth[name]; ?> - Album</h3>
+                    </div>
+                </div>
                 <div class="row probootstrap-gutter10">
                     <?php $m = 1;
                         $sth = $db->query("SELECT * FROM `album`  WHERE id='$id'");
