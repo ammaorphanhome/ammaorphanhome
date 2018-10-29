@@ -19,8 +19,9 @@ extract($_GET);
         	}
     	
         	if($shortDescription !='' && $description!= ''){
+        	   $today = date("Y-m-d");
         	                                                    
-    	       $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`) VALUES ('$title', '$shortDescription', '$image' , '$description')");
+    	       $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`, `date`) VALUES ('$title', '$shortDescription', '$image' , '$description', '$today')");
     	       
     	       $insid = $db->lastInsertId();
     	    
@@ -180,8 +181,10 @@ extract($_GET);
 		          }
 		          $image = time()."_".$filename;
 		          move_uploaded_file($_FILES['image']['tmp_name'],"../adminupload/".$image);
+
+		          $today = date("Y-m-d");
 		          
-		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `short_description`='$shortDescription' , `description`='$description' , `image`='$image'  WHERE `guid`='$qid'");
+		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `date`='$today', `short_description`='$shortDescription' , `description`='$description' , `image`='$image'  WHERE `guid`='$qid'");
 		          
 		          if($sth == true) { ?>
         			<script type="text/javascript">
@@ -197,7 +200,9 @@ extract($_GET);
 		          
 		      } else {
 		          
-		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `short_description`='$shortDescription' , `description`='$description'  WHERE `guid`='$qid'");
+		          $today = date("Y-m-d");
+		          
+		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `date`='$today',  `short_description`='$shortDescription' , `description`='$description'  WHERE `guid`='$qid'");
 		          
 		          if($sth == true) { ?>
         			<script type="text/javascript">
