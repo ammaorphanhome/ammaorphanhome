@@ -168,18 +168,32 @@
                         <div class="row">
                             <div class="col-md-3 probootstrap-animate">
                                 <h3>News and Events </h3>
-                                <ul class="probootstrap-news">
-                                    <li> <span class="probootstrap-date">Sep 25, 2018</span>
-                                        <h3><a href="news_events.php">Picnic and Fun at Park</a></h3>
-                                        <p>Today we all went to a Kothagudem Rudrampor park, there the kids had a lot of fun.</p>
-                                    </li>
-                                    <li> <span class="probootstrap-date">Sep 15, 2017</span>
-                                        <h3><a href="news_events.php">Medical camp at Amma Home</a></h3>
-                                        <p>Respected DMHO arranged a medical camp at our Amma Home and took blood samples for blood tests.</p>
-                                    </li>
-                                </ul>
+                                <?php
+                                $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 8");
+                                $count = $sth->rowCount();
+                                if ($count > 0) {
+                                    $m = 1;
+                                    while ($row = $sth->fetch()) { ?>
+                                        <ul class="probootstrap-news">
+                                            <li>
+                                                <?php  if (empty($row[date])) {
+                                                } else {
+                                                    $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                                    <p class="probootstrap-date"><?php echo $newDate; ?></p>
+                                                <?php } ?>
+
+                                                <h3><a href="news_events.php"><p><?php echo $row[title]; ?></p></a></h3>
+                                                <p><?php echo $row[short_description]; ?></p>
+                                            </li>
+                                        </ul>
+
+                                        <?php
+                                        $m++;
+                                    }
+                                } ?>
                                 <p><a href="news_events.php" class="btn btn-primary">View all news</a></p>
                             </div>
+
                             <div class="col-md-5 probootstrap-animate">
                                 <h3>Our Services</h3>
                                  <p><iframe width="420" height="315" allowfullscreen="allowfullscreen"  frameBorder="0" src="https://www.youtube.com/embed/Jb6qk78c6S0"> </iframe></p>
@@ -210,8 +224,6 @@
                                     <div class="item">
                                         <a href="img/gal_6.jpg" class="image-popup"> <img src="img/gal_7.jpg" alt="Gallery" class="img-responsive"> </a>
                                     </div>
-                                     
-                                     
                                 </div>
                                 <p class="text-center"><a href="photos.php" class="btn btn-primary">View all gallery</a></p>
                             </div>
