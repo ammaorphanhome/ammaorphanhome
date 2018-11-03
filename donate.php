@@ -10,8 +10,13 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
         $image = time() . $filename;
         move_uploaded_file($_FILES['image']['tmp_name'], "adminupload/" . $image);
     }
+
+    if(empty($donation_option) || $donation_option == 'Other' ){
+        $donation_option = 'Donation';
+    }
+
     //echo "INSERT INTO `orders`(`name`,`email`,`price`,`image`) VALUES ('$name','$email','$amount','$image')";exit;
-    $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`) VALUES ('$name','$email','$amount','$image','$msg','$mobile','$wishToSee')");
+    $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`, `payment_mode`) VALUES ('$name','$email','$amount','$image','$msg','$mobile','$wishToSee', '$donation_option')");
     $insid = $db->lastInsertId();
     if ($sth == true) { ?>
         <script type="text/javascript">
@@ -56,6 +61,10 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                 <div class="row">
                     <div class="col-md-5 probootstrap-animate">
                         <form action="" method="post" enctype="multipart/form-data" class="probootstrap-form">
+                            <div class="probootstrap-cause-inner probootstrap-cause" >
+                                <h3>Help Us - To Feed More</h3>
+                            </div>
+
                             <div class="form-group">
                                 <label for="name">Full Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="eg. Raj Kumar">
@@ -74,8 +83,19 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                             </div>
 
                             <div class="form-group">
+                                <label for="donation_options">Donation Options</label>
+                                <select class="form-control" style="-webkit-appearance: menulist;" name="donation_option" id="donation_option" onchange="price(this.value)">
+                                    <option value="">-- Select --</option>
+                                    <option value="2000">Adopt a Child for One Month</option>
+                                    <option value="24000">Adopt a Child for One Year</option>
+                                    <option value="1000">For One Day Meals</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="amount">Amount</label>
-                                <input type="number" class="form-control" id="amount" name="amount" placeholder="₹1000.00">
+                                <input type="number" min="1"  class="form-control" id="amount" required="required" name="amount" placeholder="₹1000.00">
                             </div>
 
                             <div class="form-group">
@@ -91,7 +111,7 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
 
                             <div class="form-group">
                                 <label for="message">Note</label>
-                                <textarea cols="30" rows="5" class="form-control" id="message" name="msg"
+                                <textarea cols="30" rows="6" class="form-control" id="message" name="msg"
                                           placeholder="eg. This donation is for the children who needs food."></textarea>
                             </div>
 
@@ -101,23 +121,120 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                         </form>
                     </div>
 
-                    <div class="col-md-4 col-md-push-1 probootstrap-animate">
-                        <img src="img/donate.png" class="img-responsive"/> <br/><br/>
-                        <p><b>Bank Account details, If you wish to donate through bank: <br><br>
-                                Bank Name : Karur Vysya Bank <br>
-                                Account Name : Amma Anadha Sharanalayam <br>
-                                Account No : 4810115000000166 <br>
-                                Branch : Ganesh Basthi Kothagudem <br>
-                                IFSC : KVBL0004810 <br><br>
-                                Mr.Teja (Founder): 8790782983</b>
-                        </p>
+                    <div class="col-md-6 col-md-push-1 probootstrap-animate">
+                        <div class="probootstrap-cause-inner probootstrap-cause" >
+                            <h3>Donation Causes of Amma Orphan Home </h3>
+                        </div>
                     </div>
+
+                    <div class="col-md-3 col-md-push-1 probootstrap-animate">
+
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for an Year</b></span> <br>
+                                <span>Includes clothing food, education, maintenance etc.</span><br><br>
+                                <span><b>Rs.24,000/-</b></span>
+                            </div>
+                        </div>
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for an Year</b></span> <br>
+                                <span>Includes clothing food, education, maintenance etc.</span><br><br>
+                                <span><b>Rs.24,000/-</b></span>
+                            </div>
+                        </div>
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for an Year</b></span> <br>
+                                <span>Includes clothing food, education, maintenance etc.</span><br><br>
+                                <span><b>Rs.24,000/-</b></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-3 col-md-push-1 probootstrap-animate">
+
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for an Year</b></span> <br>
+                                <span>Includes clothing food, education, maintenance etc.</span><br><br>
+                                <span><b>Rs.24,000/-</b></span>
+                            </div>
+                        </div>
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for an Year</b></span> <br>
+                                <span>Includes clothing food, education, maintenance etc.</span><br><br>
+                                <span><b>Rs.24,000/-</b></span>
+                            </div>
+                        </div>
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for an Year</b></span> <br>
+                                <span>Includes clothing food, education, maintenance etc.</span><br><br>
+                                <span><b>Rs.24,000/-</b></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-6 col-md-push-1 probootstrap-animate">
+                        <div class="probootstrap-cause-inner probootstrap-cause" >
+                            <div class="probootstrap-image-text-block probootstrap-cause" >
+                                <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                    <h3>Bank Account Details: </h3>
+                                    <p><b>  Bank Name : Karur Vysya Bank <br>
+                                            Account Name : Amma Anadha Sharanalayam <br>
+                                            Account No : 4810115000000166 <br>
+                                            Branch : Ganesh Basthi Kothagudem <br>
+                                            IFSC : KVBL0004810 <br><br>
+                                            Mr.Teja (Founder): 8790782983</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <!--<hr/> <br> <br>
+                <div class="row mb40">
+                    <div class="col-md-5">
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <h3>Bank Account Details: </h3>
+                                <p><b>  Bank Name : Karur Vysya Bank <br>
+                                        Account Name : Amma Anadha Sharanalayam <br>
+                                        Account No : 4810115000000166 <br>
+                                        Branch : Ganesh Basthi Kothagudem <br>
+                                        IFSC : KVBL0004810 <br><br>
+                                        Mr.Teja (Founder): 8790782983</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-push-1 probootstrap-animate fadeInUp probootstrap-animated">
+                        <img src="img/donate.png" class="img-responsive"> <br><br>
+                    </div>
+                </div>-->
             </div>
         </section>
 
-        <?php include('footer.php'); ?>
 
+
+        <?php include('footer.php'); ?>
+        <script type="text/javascript">
+            function price(str) {
+                if(str == 'Other' || str == '' ){
+
+                } else {
+                    document.getElementById("amount").value = str;
+                }
+            }
+        </script>
         <script src="js/scripts.min.js"></script>
         <script src="js/main.min.js"></script>
         <script src="js/custom.js"></script>

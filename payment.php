@@ -16,9 +16,11 @@
         $amount = $info['price'];
         $phone = $info['mobile'];
         $email = $info['email'];
+        $payment_mode = $info['payment_mode'];
+
         $payload = Array(
             'status' => 'Pending',
-            'purpose' => 'Donation',
+            'purpose' => $payment_mode,
             'amount' => $amount,
             'phone' => $phone,
             'buyer_name' => $fullname,
