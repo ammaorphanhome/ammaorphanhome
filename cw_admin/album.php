@@ -22,7 +22,7 @@ if(isset($_POST) && $_POST['submit']=='ADD') {
 		$image=time()."_".$filename; 
 		move_uploaded_file($tmpname,"../adminupload/".$image);
 		
-		$sth = $db->query("INSERT INTO `album`(`guid`,`id`,`image`) VALUES ('','$id','$image')");
+		$sth = $db->query("INSERT INTO `album`(`guid`,`id`,`image`, `can_see`) VALUES ('','$id','$image', '$wishToSee')");
 	}
 	if(is_array($combine_array))
 	{ ?>
@@ -50,24 +50,35 @@ if(isset($_POST) && $_POST['submit']=='Edit')
 		$image = time()."_".$filename;
 		$img_path="../adminupload/".$image;
 		move_uploaded_file($_FILES['images1']['tmp_name'], $img_path);
-		$ith = $db->query("UPDATE `album` SET `image`='$image' WHERE `guid`='$qid'");
-	} 
-	
-	//$sth = $db->query("UPDATE `album` SET `name`='$name' , `discription`='$discription'  WHERE `guid`='$qid'");
-	
-	
-	
-	if($ith == true) { ?>
-	<script type="text/javascript">
-			alert('Data Successfully Updated');
-			window.location="<?php echo URL; ?>past_conferences.php";
-			</script>
-	<?php } else { ?>
-	<script type="text/javascript">
-			alert('Please try Again');
-			window.location="<?php echo URL; ?>past_conferences.php";
-			</script>
-	<?php } 
+		$ith = $db->query("UPDATE `album` SET `image`='$image', `can_see` = '$wishToSee'  WHERE `guid`='$qid'");
+
+        if($ith == true) { ?>
+            <script type="text/javascript">
+                alert('Data Successfully Updated');
+                window.location="<?php echo URL; ?>past_conferences.php";
+            </script>
+        <?php } else { ?>
+            <script type="text/javascript">
+                alert('Please try Again');
+                window.location="<?php echo URL; ?>past_conferences.php";
+            </script>
+        <?php }
+    }  else {
+        $ith = $db->query("UPDATE `album` SET `can_see` = '$wishToSee'  WHERE `guid`='$qid'");
+
+        if($ith == true) { ?>
+            <script type="text/javascript">
+                alert('Data Successfully Updated');
+                window.location="<?php echo URL; ?>past_conferences.php";
+            </script>
+        <?php } else { ?>
+            <script type="text/javascript">
+                alert('Please try Again');
+                window.location="<?php echo URL; ?>past_conferences.php";
+            </script>
+        <?php }
+    }
+
 }
 if(isset($_POST) && $_POST['action']=='delete') {
 	//print_r($_POST); exit;
@@ -145,20 +156,26 @@ if(isset($_POST) && $_POST['action']=='delete') {
 			        
                     <label class="control-label"> Image</label>
                     <input type="file" name="images1[]" multiple class="form-control" required="">
-					<input type="hidden" name="id" value="<?php echo $_GET[id];?>" >
+                    <input type="hidden" name="id" value="<?php echo $_GET[id];?>" >
 					
 					
                   </div>
-				  
-				   <!--div class="form-group">
-			        
-                    <label class="control-label">Property Discription</label>
-					
-                    <textarea type="text" name="discription"  class="form-control" required=""></textarea>
-					<input type="hidden" name="id" value="<?php echo $_GET[id];?>" >
-				
-					
-                  </div-->
+
+                  <div class="form-group">
+                      <label for="wishToSee">Would you like to see the photo(s) in Album?</label> <br/>
+                      <input type="radio" name="wishToSee" value="Yes" checked>Yes
+                      <input type="radio" name="wishToSee" value="No">No
+                  </div>
+
+                  <!--div class="form-group">
+
+                   <label class="control-label">Property Discription</label>
+
+                   <textarea type="text" name="discription"  class="form-control" required=""></textarea>
+                   <input type="hidden" name="id" value="<?php echo $_GET[id];?>" >
+
+
+                 </div-->
 				  
 				  <div class="card-footer">
                 <button type="submit" name="submit" value="ADD" class="btn btn-primary icon-btn"><i class="fa fa-fw fa-lg fa-check-circle"></i>Submit</button>
@@ -183,15 +200,15 @@ if(isset($_POST) && $_POST['action']=='delete') {
 			  
 			  
 			   <!--div class="form-group">
-			        
+
                     <label class="control-label">Property Name</label>
                     <input type="text" name="name" value="<?php echo $row['name'];?>" class="form-control" >
 					<input type="hidden" name="id" value="<?php echo $_GET[id];?>" >
-				
-					
+
+
                   </div-->
-			  
-			  
+
+
 			  
 			  
 			   <div class="form-group">
@@ -201,17 +218,34 @@ if(isset($_POST) && $_POST['action']=='delete') {
 			     	<img src="../adminupload/<?php echo $row['image']; ?>" height="150" width="150"/>
 					<!--label>Upload<strong> MORE THAN ONE IMAGE</strong>&nbsp;&nbsp;At A Time</label-->
                   </div>
-				  
-				  
-				  <!--div class="form-group">
-			        
+
+
+                  <div class="form-group">
+                      <label for="wishToSee">Would you like to see the photo(s) in Album</label> <br/>
+                      <input type="radio" name="wishToSee" id="IdYes" value="Yes">Yes
+                      <input type="radio" name="wishToSee" id="IdNo" value="No">No
+                  </div>
+
+                  <?php if($row['can_see'] == 'Yes') { ?>
+                      <script type="text/javascript">
+                          document.getElementById("IdYes").checked = true;
+                      </script>
+                  <?php }  else { ?>
+                      <script type="text/javascript">
+                          document.getElementById("IdNo").checked = true;
+                      </script>
+                  <?php } ?>
+
+                  <!--div class="form-group">
+
                     <label class="control-label">Property Discription</label>
                      <textarea type="text" name="discription"  class="form-control" required=""><?php echo $row['discription'];?></textarea>
-					<input type="hidden" name="id" value="<?php echo $_GET[id];?>" >
-				
-					
+                    <input type="hidden" name="id" value="<?php echo $_GET[id];?>" >
+
+
                   </div-->
-				  
+
+
 				  <div class="card-footer">
 				   <input type="hidden" name="qid" value="<?php echo $q; ?>">
                     <input type="hidden" name="aid" value="<?php echo $id; ?>">
