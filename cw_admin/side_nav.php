@@ -2,6 +2,7 @@
 require("lib/config.php");
 $arr =  basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 $add = substr($arr,0,-4);
+echo "adddd===>".$add;
 ?>
 <aside class="main-sidebar hidden-print">
         <section class="sidebar">
@@ -22,21 +23,21 @@ $add = substr($arr,0,-4);
           <ul class="sidebar-menu">
             <li class="<?php if($add==='home'){ echo "active"; }?>"><a href="home.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
 			
-			<li class="<?php if($add==='conferences'){ echo "active"; }?>"><a href="past_conferences.php"><i class="fa fa-calendar"></i><span>Album</span></a></li>
+			<li class="<?php if($add==='past_conferences'){ echo "active"; }?>"><a href="past_conferences.php"><i class="fa fa-calendar"></i><span>Album</span></a></li>
 			
-			<!--li class="<?php if($add==='album'){ echo "active"; }?>"><a href="album.php"><i class="fa fa-image"></i><span>Gallery</span></a></li-->
+			<!--li class="<?php if($add==='events'){ echo "active"; }?>"><a href="album.php"><i class="fa fa-image"></i><span>Gallery</span></a></li-->
 			
 			<!--li class="<?php if($add==='Video'){ echo "active"; }?>"><a href="chapters.php"><i class="fa fa-film"></i><span>Videos</span></a></li-->
 			
-			<li class="<?php if($add==='Events'){ echo "active"; }?>"><a href="events.php"><i class="fa fa-photo"></i><span>Videos</span></a></li>
+			<li class="<?php if($add==='events'){ echo "active"; }?>"><a href="events.php"><i class="fa fa-photo"></i><span>Videos</span></a></li>
 			
-			<li class="<?php if($add==='News'){ echo "active"; }?>"><a href="news_events.php"><i class="fa fa-file"></i><span>News & Events</span></a></li>
+			<li class="<?php if($add==='news_events'){ echo "active"; }?>"><a href="news_events.php"><i class="fa fa-file"></i><span>News & Events</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="manual_donation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
+			<li class="<?php if($add==='manual_donation'){ echo "active"; }?>"><a href="manual_donation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-check"></i><span>Successful Site Donations</span></a></li>
+			<li class="<?php if($add==='ysa'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-check"></i><span>Successful Site Donations</span></a></li>
 			
-			<li class="<?php if($add==='pay'){ echo "active"; }?>"><a href="failed_donations.php"><i class="fa fa-times"></i><span>Failed Site Donations</span></a></li>
+			<li class="<?php if($add==='failed_donations'){ echo "active"; }?>"><a href="failed_donations.php"><i class="fa fa-times"></i><span>Failed Site Donations</span></a></li>
 			
 		
 			

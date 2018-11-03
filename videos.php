@@ -38,7 +38,7 @@
 
                 <div class="row probootstrap-gutter10">
                     <?php $m = 1;
-                        $sth = $db->query("SELECT * FROM `events`");
+                        $sth = $db->query("SELECT * FROM `events` where can_see = 'Yes'");
                         while ($row = $sth->fetch()) { ?>
                             <div class="col-md-4 col-sm-4 col-xs-6">
                                 <iframe width="100%" height="250" src="<?php echo $row[image]; ?>" frameborder="0"

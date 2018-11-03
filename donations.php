@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn">
-                            <h1 class="probootstrap-heading probootstrap-animate">Latest Donations <span>Together we can make a difference</span>
+                            <h1 class="probootstrap-heading probootstrap-animate">Donations <span>Together we can make a difference</span>
                             </h1>
                         </div>
                     </div>
@@ -30,14 +30,18 @@
             <div class="container">
                 <div class="col-md-12">
                     <?php
-                    $sth = $db->query("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' ORDER BY date DESC");
+                    $sth = $db->query("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' and  MONTH(date) = MONTH(CURDATE()) ORDER BY date DESC");
                     $count = $sth->rowCount(); ?>
+
                     <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="mb0">Donations of this month</h2>
+                        </div>
+
                         <div class="col-md-12 probootstrap-animate">
                             <form action="" method="" class="probootstrap-form">
                                 <div class="form-group">
-                                    <p><b>Thank you for your kind donations, Your generosity will directly benefit the children
-                                            of Amma Orphan Home.</b></p>
+                                    <p><b>Thank you for your kind donations, Your generosity will directly benefit the children of Amma Orphan Home.</b></p>
                                 </div>
                             </form>
                         </div>

@@ -6,6 +6,7 @@ require "lib/secure.php";
 extract($_POST);
 extract($_GET);
 $aid = $_GET['album'];
+
 if(isset($_POST) && $_POST['submit']=='ADD') {
 	$aid= $_POST['aid']; 
 	$tmparray=array();
@@ -37,6 +38,7 @@ if(isset($_POST) && $_POST['submit']=='ADD') {
 			</script>
 	<?php } 
 }
+
 if(isset($_POST) && $_POST['submit']=='Edit')
 {
 	echo $qid;
@@ -162,7 +164,7 @@ if(isset($_POST) && $_POST['action']=='delete') {
                   </div>
 
                   <div class="form-group">
-                      <label for="wishToSee">Would you like to see the photo(s) in Album?</label> <br/>
+                      <label for="wishToSee">Would you like to see the photo(s) in Album of Website?</label> <br/>
                       <input type="radio" name="wishToSee" value="Yes" checked>Yes
                       <input type="radio" name="wishToSee" value="No">No
                   </div>
@@ -221,7 +223,7 @@ if(isset($_POST) && $_POST['action']=='delete') {
 
 
                   <div class="form-group">
-                      <label for="wishToSee">Would you like to see the photo(s) in Album</label> <br/>
+                      <label for="wishToSee">Would you like to see the photo(s) in Album of Website?</label> <br/>
                       <input type="radio" name="wishToSee" id="IdYes" value="Yes">Yes
                       <input type="radio" name="wishToSee" id="IdNo" value="No">No
                   </div>

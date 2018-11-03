@@ -43,7 +43,7 @@
                 </div>
                 <div class="row mb10 probootstrap-gutter10">
                     <?php $m = 1;
-                        $sth = $db->query("SELECT * FROM `album`  WHERE id='$id'");
+                        $sth = $db->query("SELECT * FROM `album`  WHERE id='$id' and can_see = 'Yes'");
                         $count = $sth->rowCount();
                         if ($count == 0) {
                     ?>
@@ -68,7 +68,7 @@
 
                 <div class="row mb10">
                     <div class="col-md-12">
-                        <p><a href="photos.php" class="btn btn-primary">Back to Gallery</a></p>
+                        <p><a href="photos.php" class="btn btn-primary">Back to Albums</a></p>
                     </div>
                 </div>
             </div>

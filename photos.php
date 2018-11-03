@@ -38,7 +38,7 @@
 
                 <div class="row probootstrap-gutter10">
                     <?php
-                    $sth = $db->query("SELECT * FROM `past_conferences` ORDER BY `guid` DESC");
+                    $sth = $db->query("SELECT * FROM `past_conferences` where can_see = 'Yes' ORDER BY `guid` DESC");
                     $count = $sth->rowCount();
                     while ($row = $sth->fetch()) {
                     ?>
