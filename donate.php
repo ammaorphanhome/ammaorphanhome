@@ -97,31 +97,31 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                                     <option value="Others">Others</option>
                                 </select>-->
                                 <input type="radio" id="educationForYear" name="donationOption" value="24000">
-                                    <label for="educationForYear">Child's Education for an Year - Rs.24,000/-</label>
+                                    <label for="educationForYear">Sponsor a Child Education for an Year - Rs.24,000/-</label>
                                 </input> <br/>
                                 <input type="radio" id="maintenanceForYear" name="donationOption" value="10000">
-                                    <label for="maintenanceForYear">Child's Maintenance for an Year - Rs.10,000/-</label>
+                                    <label for="maintenanceForYear">Sponsor a Child Maintenance for an Year - Rs.10,000/-</label>
                                 </input> <br/>
                                 <input type="radio" id="homeForMonth" name="donationOption" value="15000">
-                                    <label for="homeForMonth">Home Maintenance for a Month - Rs.15,000/-</label>
+                                    <label for="homeForMonth">Sponsor Home Maintenance for a Month - Rs.15,000/-</label>
                                 </input> <br/>
                                 <input type="radio" id="eldersForYear" name="donationOption" value="15000">
-                                    <label for="eldersForYear">Elder's Maintenance for an Year - Rs.15,000/-</label>
+                                    <label for="eldersForYear">Sponsor an Elder Maintenance for an Year - Rs.15,000/-</label>
                                 </input> <br/>
                                 <input type="radio" id="fullMealForDay" name="donationOption" value="7500">
-                                    <label for="fullMealForDay">Sponsor Full Day Meals - Rs.7,500/-</label>
+                                    <label for="fullMealForDay">Sponsor Full Day Meals at Amma Home - Rs.7,500/-</label>
                                 </input> <br/>
                                 <input type="radio" id="lunchForDay" name="donationOption" value="3000">
-                                    <label for="lunchForDay">Sponsor Lunch or Dinner for a Day - Rs.3,000/-</label>
+                                    <label for="lunchForDay">Sponsor Lunch or Dinner for a Day at Amma Home - Rs.3,000/-</label>
                                 </input> <br/>
                                 <input type="radio" id="breakfastForDay" name="donationOption" value="1000">
-                                    <label for="breakfastForDay">Sponsor Breakfast for a Day - Rs.1,000/-</label>
+                                    <label for="breakfastForDay">Sponsor Breakfast for a Day at Amma Home - Rs.1,000/-</label>
                                 </input> <br/>
                                 <input type="radio" id="snacksForDay" name="donationOption" value="500">
-                                    <label for="snacksForDay">Sponsor Snacks for a Day - Rs.500/-</label>
+                                    <label for="snacksForDay">Sponsor Snacks for a Day at Amma Home - Rs.500/-</label>
                                 </input> <br/>
                                 <input type="radio" id="others" name="donationOption" value="Others">
-                                    <label for="others">Others</label>
+                                    <label for="others">Other Cause</label>
                                 </input> <br/>
                                 <input type="hidden" id="purpose" name="purpose"/>
                             </div>
@@ -144,7 +144,7 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
 
                             <div class="form-group">
                                 <label for="message">Note</label>
-                                <textarea cols="30" rows="6" class="form-control" id="message" name="msg"
+                                <textarea cols="30" rows="5" class="form-control" id="message" name="msg"
                                           placeholder="eg. This donation is for the children who needs food."></textarea>
                             </div>
 
@@ -164,21 +164,21 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
 
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Child's Education for an Year</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor a Child Education for an Year</b></span> <br>
                                 <span>Includes books, stationery, transport etc.</span><br><br>
                                 <span><b>Rs.24,000/-</b></span>
                             </div>
                         </div>
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Child's Maintenance for an Year</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor a Child Maintenance for an Year</b></span> <br>
                                 <span>Includes food, clothing, medications, etc.</span><br><br>
                                 <span><b>Rs.10,000/-</b></span>
                             </div>
                         </div>
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Home Maintenance for a Month</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor Home Maintenance for a Month</b></span> <br>
                                 <span>Includes groceries, vegetables, milk etc.</span><br><br>
                                 <span><b>Rs.15,000/-</b></span>
                             </div>
@@ -195,7 +195,7 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                     <div class="col-md-3 col-md-push-1 probootstrap-animate">
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Elder's Maintenance for an Year</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor an Elder Maintenance for an Year</b></span> <br>
                                 <span>Includes food, clothing, medication, maintenance etc.</span><br><br>
                                 <span><b>Rs.15,000/-</b></span>
                             </div>
@@ -203,7 +203,7 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
 
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Sponsor Full Day Meals</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor Full Day Meals at Amma Home</b></span> <br>
                                 <span>Includes breakfast, lunch, dinner and snacks for day.</span><br><br>
                                 <span><b>Rs.7,500/-</b></span>
                             </div>
@@ -211,14 +211,14 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
 
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Sponsor Lunch or Dinner</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor Lunch or Dinner at Amma Home</b></span> <br>
                                 <span>Includes lunch or dinner for a day.</span><br><br>
                                 <span><b>Rs.3,000/-</b></span>
                             </div>
                         </div>
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Sponsor Breakfast and Snacks</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor Breakfast and Snacks at Amma Home</b></span> <br>
                                 <span>Includes breakfast for a day.</span><br><br>
                                 <span><b>Rs.1,500/-</b></span>
                             </div>
@@ -263,15 +263,15 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                     };
                     setAmount = function(current) {
                         var str  = current.value;
-                        var selector = 'label[for=' + current.id + ']';
-                        var label = document.querySelector(selector);
-                        var text = label.innerHTML;
-
                         if(str == 'Others' || str == '' ){
                             document.getElementById("amount").value = '';
                             document.getElementById("amount").readOnly = false;
                             document.getElementById("purpose").value = "Donation for Amma Home";
                         } else {
+                            var selector = 'label[for=' + current.id + ']';
+                            var label = document.querySelector(selector);
+                            var text = label.innerHTML;
+
                             text = text.substr(0, text.indexOf("-") - 1);
                             document.getElementById("purpose").value = text;
                             document.getElementById("amount").value = str;
