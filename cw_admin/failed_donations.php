@@ -139,12 +139,22 @@ extract($_GET);
                       <td><?php echo $row[mobile]; ?></td>
                       <td><?php echo $row[date]; ?></td>
                       <td><?php echo $row[note]; ?></td>
-                      
-                      <th><img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px"></th>
-                      
-					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="failed_donations.php?action=viewDetails&guid=<?php echo $row[0]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
-					  
-					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="<?php echo URL; ?>failed_donations.php?action=deleteData&guid=<?php echo $row[0]; ?>" class="btn btn-danger" onClick="return delete1();"><i class="fa fa-trash icon-only"></i></a> </div></td>
+                      <?php
+                        if (!empty($row[image])) { ?>
+                            <td class="col-md-1">
+                                <div class="probootstrap-animate fadeInUp probootstrap-animated">
+                                    <a href="../adminupload/<?php echo $row[image];?>" class="image-popup">
+                                        <img src="../adminupload/<?php echo $row[image];?>"
+                                             alt="image" class="img-responsive">
+                                    </a>
+                                </div>
+                            </td>
+                        <?php } else { ?>
+                            <td></td>
+                        <?php } ?>
+
+                        <td class="center"><div class="btn btn-xs btn-group-xs"><a href="failed_donations.php?action=viewDetails&guid=<?php echo $row[0]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
+    				  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="<?php echo URL; ?>failed_donations.php?action=deleteData&guid=<?php echo $row[0]; ?>" class="btn btn-danger" onClick="return delete1();"><i class="fa fa-trash icon-only"></i></a> </div></td>
                     </tr>
 	  <?php $m++; } } ?>
                   </tbody>

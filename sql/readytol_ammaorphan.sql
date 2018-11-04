@@ -343,6 +343,10 @@ ALTER TABLE past_conferences ADD can_see varchar(10);
 // Videos
 ALTER TABLE events ADD can_see varchar(10);
 
+// orders
+ALTER TABLE orders ADD donation_option text;
+
 Update album set can_see='Yes' WHERE 1=1;
 Update past_conferences set can_see='Yes' WHERE 1=1;
 Update events set can_see='Yes' WHERE 1=1;
+Update orders set donation_option = 'Others' WHERE 1=1;

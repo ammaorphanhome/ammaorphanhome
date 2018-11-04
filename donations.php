@@ -56,7 +56,9 @@
                                     <th>Name</th>
                                     <th>Amount</th>
                                     <th>Donated On</th>
-                                    <th>Note</th>
+                                    <th>Cause</th>
+                                    <th>Notes</th>
+                                    <th>Photo</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -70,7 +72,21 @@
                                             <td><?php echo $row[name]; ?> </td>
                                             <td><?php echo $row[price]; ?></td>
                                             <td><?php echo $row[date]; ?></td>
+                                            <td><?php echo $row[donation_option]; ?></td>
                                             <td><?php echo $row[note]; ?></td>
+                                            <?php
+                                            if (!empty($row[image])) { ?>
+                                                <td class="col-md-1">
+                                                    <div class="probootstrap-animate fadeInUp probootstrap-animated">
+                                                        <a href="../adminupload/<?php echo $row[image];?>" class="image-popup">
+                                                            <img src="../adminupload/<?php echo $row[image];?>"
+                                                                 alt="image" class="img-responsive">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            <?php } else { ?>
+                                                <td></td>
+                                            <?php } ?>
                                         </tr>
                                         <?php $m++;
                                     }

@@ -251,17 +251,27 @@ extract($_GET);
 						$m = 1;
 						 while($row = $sth->fetch()) {
                         ?>
-                    <tr>
+                    <tr class="row">
                       <td><?php echo $m; ?></td>
                       <td><?php echo $row[name];?> </td>
                       <td><?php echo $row[email]; ?></td>
                       <td><?php echo $row[mobile]; ?></td>
                       <td><?php echo $row[date]; ?></td>
                       <td><?php echo $row[note]; ?></td>
-                      
-                      <th><img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px"></th>
-                      
-					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="manual_donation.php?action=viewDetails&guid=<?php echo $row[0]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
+                      <?php
+                        if (!empty($row[image])) { ?>
+                            <td class="col-md-1">
+                                <div class="probootstrap-animate fadeInUp probootstrap-animated">
+                                    <a href="../adminupload/<?php echo $row[image];?>" class="image-popup">
+                                        <img src="../adminupload/<?php echo $row[image];?>"
+                                             alt="image" class="img-responsive">
+                                    </a>
+                                </div>
+                            </td>
+                        <?php } else { ?>
+                            <td></td>
+                        <?php } ?>
+                        <td class="center"><div class="btn btn-xs btn-group-xs"><a href="manual_donation.php?action=viewDetails&guid=<?php echo $row[0]; ?>"  class="btn btn-warning"><i class="fa fa-eye icon-only"></i></a>  </div></td>
 					  
 					  <td class="center"><div class="btn btn-xs btn-group-xs"><a href="<?php echo URL; ?>manual_donation.php?action=deleteData&guid=<?php echo $row[0]; ?>" class="btn btn-danger" onClick="return delete1();"><i class="fa fa-trash icon-only"></i></a> </div></td>
                     </tr>
