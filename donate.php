@@ -66,24 +66,24 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                             </div>
 
                             <div class="form-group">
-                                <label for="name">Full Name</label>
+                                <label for="name">Full Name:</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="eg. Raj Kumar">
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Email:</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                        placeholder="eg. info@ammaorphanhome.org">
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Phone</label>
+                                <label for="email">Phone:</label>
                                 <input type="text" class="form-control" maxlength="10" pattern="^\d{10}$" id="email"
                                        name="mobile" placeholder="eg. 9999999999">
                             </div>
 
                             <div class="form-group">
-                                <label for="donation_options">Donation Options:</label><br/>
+                                <label for="donation_options">Donation Options to Sponsor at Amma Orphan Home:</label><br/>
                                 <!--<select class="form-control" style="-webkit-appearance: menulist;" name="donationOption" id="donationOption" onchange="price(this.value)">
                                     <option value="">-- Select --</option>
                                     <option value="24000">Child's Education for an Year - Rs.24,000/-</option>
@@ -96,29 +96,35 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                                     <option value="500">Sponsor Snacks for a Day - Rs.500/-</option>
                                     <option value="Others">Others</option>
                                 </select>-->
+                                <input type="radio" id="sponsorForYear" name="donationOption" value="35000">
+                                    <label for="sponsorForYear">Adopt a Child for an Year - ₹ 35,000</label>
+                                </input> <br/>
+                                <input type="radio" id="sponsorForMonth" name="donationOption" value="3000">
+                                    <label for="sponsorForMonth">Adopt a Child for a Month - ₹ 3,000</label>
+                                </input> <br/>
                                 <input type="radio" id="educationForYear" name="donationOption" value="24000">
-                                    <label for="educationForYear">Sponsor a Child Education for an Year - Rs.24,000/-</label>
+                                    <label for="educationForYear">A Child's Education for an Year - ₹ 24,000</label>
                                 </input> <br/>
                                 <input type="radio" id="maintenanceForYear" name="donationOption" value="10000">
-                                    <label for="maintenanceForYear">Sponsor a Child Maintenance for an Year - Rs.10,000/-</label>
+                                    <label for="maintenanceForYear">A Child's Maintenance for an Year - ₹ 10,000</label>
                                 </input> <br/>
                                 <input type="radio" id="homeForMonth" name="donationOption" value="15000">
-                                    <label for="homeForMonth">Sponsor Home Maintenance for a Month - Rs.15,000/-</label>
+                                    <label for="homeForMonth">Home Maintenance for a Month - ₹ 15,000</label>
                                 </input> <br/>
-                                <input type="radio" id="eldersForYear" name="donationOption" value="15000">
-                                    <label for="eldersForYear">Sponsor an Elder Maintenance for an Year - Rs.15,000/-</label>
+                                <input type="radio" id="eldersForYear" name="donationOption" value="24000">
+                                    <label for="eldersForYear">An Elder's Maintenance for an Year - ₹ 24,000</label>
                                 </input> <br/>
                                 <input type="radio" id="fullMealForDay" name="donationOption" value="7500">
-                                    <label for="fullMealForDay">Sponsor Full Day Meals at Amma Home - Rs.7,500/-</label>
+                                    <label for="fullMealForDay">Full Day Meals at Amma Home - ₹ 7,500</label>
                                 </input> <br/>
                                 <input type="radio" id="lunchForDay" name="donationOption" value="3000">
-                                    <label for="lunchForDay">Sponsor Lunch or Dinner for a Day at Amma Home - Rs.3,000/-</label>
+                                    <label for="lunchForDay">Lunch/Dinner for a Day - ₹ 3,000</label>
                                 </input> <br/>
                                 <input type="radio" id="breakfastForDay" name="donationOption" value="1000">
-                                    <label for="breakfastForDay">Sponsor Breakfast for a Day at Amma Home - Rs.1,000/-</label>
+                                    <label for="breakfastForDay">Breakfast for a Day - ₹ 1,000</label>
                                 </input> <br/>
                                 <input type="radio" id="snacksForDay" name="donationOption" value="500">
-                                    <label for="snacksForDay">Sponsor Snacks for a Day at Amma Home - Rs.500/-</label>
+                                    <label for="snacksForDay">Snacks for a Day - ₹ 500</label>
                                 </input> <br/>
                                 <input type="radio" id="others" name="donationOption" value="Others">
                                     <label for="others">Other Cause</label>
@@ -127,12 +133,12 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                             </div>
 
                             <div class="form-group">
-                                <label for="amount">Amount</label>
+                                <label for="amount">Amount:</label>
                                 <input type="number" min="1"  class="form-control" id="amount" required="required" name="amount" onchange="amountChange(this.value)" placeholder="eg. ₹1000.00">
                             </div>
 
                             <div class="form-group">
-                                <label for="amount">Upload Donar Photo</label>
+                                <label for="amount">Upload Donar Photo:</label>
                                 <input type="file" class="form-control" id="amount" name="image">
                             </div>
 
@@ -143,7 +149,7 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                             </div>
 
                             <div class="form-group">
-                                <label for="message">Note</label>
+                                <label for="message">Notes:</label>
                                 <textarea cols="30" rows="5" class="form-control" id="message" name="msg"
                                           placeholder="eg. This donation is for the children who needs food."></textarea>
                             </div>
@@ -164,40 +170,51 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
 
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for an Year</b></span> <br>
+                                <span>Includes all the maintenance of child like food, clothing, education, health etc.</span><br><br>
+                                <span><b>₹ 35,000/-</b></span>
+                            </div>
+                        </div>
+
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Adopt a Child for a Month</b></span> <br>
+                                <span>Includes all the maintenance of child like food, clothing, education, health etc.</span><br><br>
+                                <span><b>₹ 3,000/-</b></span>
+                            </div>
+                        </div>
+
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
                                 <span style="color:orangered;"><b>Sponsor a Child Education for an Year</b></span> <br>
                                 <span>Includes books, stationery, transport etc.</span><br><br>
-                                <span><b>Rs.24,000/-</b></span>
+                                <span><b>₹ 24,000/-</b></span>
                             </div>
                         </div>
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
                                 <span style="color:orangered;"><b>Sponsor a Child Maintenance for an Year</b></span> <br>
                                 <span>Includes food, clothing, medications, etc.</span><br><br>
-                                <span><b>Rs.10,000/-</b></span>
+                                <span><b>₹ 10,000/-</b></span>
                             </div>
                         </div>
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
                                 <span style="color:orangered;"><b>Sponsor Home Maintenance for a Month</b></span> <br>
                                 <span>Includes groceries, vegetables, milk etc.</span><br><br>
-                                <span><b>Rs.15,000/-</b></span>
-                            </div>
-                        </div>
-                        <div class="probootstrap-image-text-block probootstrap-cause" >
-                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Others</b></span> <br>
-                                <span>Include any cause & any amount</span><br><br>
+                                <span><b>₹ 15,000/-</b></span>
                             </div>
                         </div>
 
                     </div>
 
                     <div class="col-md-3 col-md-push-1 probootstrap-animate">
+
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
-                                <span style="color:orangered;"><b>Sponsor an Elder Maintenance for an Year</b></span> <br>
+                                <span style="color:orangered;"><b>Sponsor an Elder at Old Age Home for an Year</b></span> <br>
                                 <span>Includes food, clothing, medication, maintenance etc.</span><br><br>
-                                <span><b>Rs.15,000/-</b></span>
+                                <span><b>₹ 24,000/-</b></span>
                             </div>
                         </div>
 
@@ -205,7 +222,7 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
                                 <span style="color:orangered;"><b>Sponsor Full Day Meals at Amma Home</b></span> <br>
                                 <span>Includes breakfast, lunch, dinner and snacks for day.</span><br><br>
-                                <span><b>Rs.7,500/-</b></span>
+                                <span><b>₹ 7,500/-</b></span>
                             </div>
                         </div>
 
@@ -213,14 +230,21 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
                                 <span style="color:orangered;"><b>Sponsor Lunch or Dinner at Amma Home</b></span> <br>
                                 <span>Includes lunch or dinner for a day.</span><br><br>
-                                <span><b>Rs.3,000/-</b></span>
+                                <span><b>₹ 3,000/-</b></span>
                             </div>
                         </div>
                         <div class="probootstrap-image-text-block probootstrap-cause" >
                             <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
                                 <span style="color:orangered;"><b>Sponsor Breakfast and Snacks at Amma Home</b></span> <br>
-                                <span>Includes breakfast for a day.</span><br><br>
-                                <span><b>Rs.1,500/-</b></span>
+                                <span>Includes breakfast and milk for a day.</span><br><br>
+                                <span><b>₹ 1,500/-</b></span>
+                            </div>
+                        </div>
+
+                        <div class="probootstrap-image-text-block probootstrap-cause" >
+                            <div class="probootstrap-cause-inner" style="border:1px solid #e6e5e5;">
+                                <span style="color:orangered;"><b>Others</b></span> <br>
+                                <span>Include any cause & any amount</span><br><br>
                             </div>
                         </div>
                     </div>
