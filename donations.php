@@ -66,12 +66,13 @@
                                 if ($count > 0) {
                                     $m = 1;
                                     while ($row = $sth->fetch()) {
+                                        $newDate = date("M jS, Y", strtotime($row[date]));
                                         ?>
                                         <tr>
                                             <td><?php echo $m; ?></td>
                                             <td><?php echo $row[name]; ?> </td>
                                             <td><?php echo $row[price]; ?></td>
-                                            <td><?php echo $row[date]; ?></td>
+                                            <td><?php echo $newDate; ?></td>
                                             <td><?php echo $row[donation_option]; ?></td>
                                             <td><?php echo $row[note]; ?></td>
                                             <?php

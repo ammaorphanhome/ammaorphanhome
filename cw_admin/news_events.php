@@ -19,7 +19,17 @@ extract($_GET);
             	$image = time().$filename;
             	move_uploaded_file($_FILES['image']['tmp_name'],"../adminupload/".$image); 
         	}
-    	
+
+            $time = strtotime($_POST['eventDate']);
+            if ($time) {
+                $new_date = date('Y-m-d', $time);
+            } else { ?>
+                <script type="text/javascript">
+                    alert('Invalid date selected, Please try Again');
+              		window.location="<?php echo URL; ?>news_events.php";
+    		 	</script>
+            <?php }
+
         	if($shortDescription !='' && $description!= ''){
         	    $today = date("Y-m-d");
 
@@ -32,7 +42,8 @@ extract($_GET);
                 $description = str_replace("'", "\'", $description);
                 $description = str_replace('"', "\"", $description);
 
-                $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`, `date`) VALUES ('$title', '$shortDescription', '$image' , '$description', '$today')");
+                $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`, `date`) 
+                                            VALUES ('$title', '$shortDescription', '$image' , '$description', '$new_date')");
     	       
     	       $insid = $db->lastInsertId();
     	    
@@ -125,7 +136,12 @@ extract($_GET);
                                     <label for="photo" class="control-label">Upload A Photo</label>
                                     <input type="file" class="form-control" id="photo" accept=".jpg, .jpeg" name="image">
                                 </div>
-                                                        
+
+                                <div class="form-group">
+                                    <label for="eventDate" class="control-label">Event Date</label>
+                                    <input type="date" class="form-control" id="eventDate" name="eventDate" value="<?php echo date('Y-m-d'); ?>" >
+                                </div>
+
 								<div class="card-footer">
 									<button type="submit" name="submit" value="ADD"
 										class="btn btn-primary icon-btn">
@@ -173,6 +189,10 @@ extract($_GET);
                     <img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px">
                   </div>
 
+                  <div class="form-group">
+                        <label for="eventDate" class="control-label">Event Date</label>
+                        <input readonly type="date" class="form-control" id="eventDate" name="eventDate" value="<?php echo $row[image]; ?>" >
+                  </div>
                   
 				  <div class="clearfix"></div>
 	   	  		     
@@ -195,7 +215,17 @@ extract($_GET);
               $description = str_replace("'", "\'", $description);
               $description = str_replace('"', "\"", $description);
 
-          if(!empty($filename)) {
+              $time = strtotime($_POST['eventDate']);
+              if ($time) {
+                  $new_date = date('Y-m-d', $time);
+              } else { ?>
+                  <script type="text/javascript">
+                      alert('Invalid date selected, Please try Again');
+                      window.location="<?php echo URL; ?>news_events.php";
+                  </script>
+              <?php }
+
+              if(!empty($filename)) {
 		          $filepath ="../adminupload/".$imagefile;
 		          if(file_exists($filepath)) {
 		              unlink($filepath);
@@ -205,7 +235,7 @@ extract($_GET);
 
 		          $today = date("Y-m-d");
 		          
-		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `date`='$today', `short_description`='$shortDescription' , `description`='$description' , `image`='$image'  WHERE `guid`='$qid'");
+		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `date`='$new_date', `short_description`='$shortDescription' , `description`='$description' , `image`='$image'  WHERE `guid`='$qid'");
 		          
 		          if($sth == true) { ?>
         			<script type="text/javascript">
@@ -223,7 +253,7 @@ extract($_GET);
 		          
 		          $today = date("Y-m-d");
 		          
-		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `date`='$today',  `short_description`='$shortDescription' , `description`='$description'  WHERE `guid`='$qid'");
+		          $sth = $db->query("UPDATE `news` SET `title`='$title' , `date`='$new_date', `short_description`='$shortDescription' , `description`='$description'  WHERE `guid`='$qid'");
 		          
 		          if($sth == true) { ?>
         			<script type="text/javascript">
@@ -271,8 +301,13 @@ extract($_GET);
                             <label for="photo" class="control-label">Upload a new Photo</label>
                             <input type="file" class="form-control" id="photo" accept=".jpg, .jpeg" name="image">
                           </div>
-                                
-        			      <div class="form-group">
+
+                          <div class="form-group">
+                              <label for="eventDate" class="control-label">Event Date</label>
+                              <input type="date" class="form-control" id="eventDate" name="eventDate" value="<?php echo $row[date]; ?>"  >
+                          </div>
+
+                          <div class="form-group">
                             <label class="control-label">Previous Photo</label></br>
                             <img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px">
                           </div>
@@ -320,6 +355,7 @@ extract($_GET);
                       <th>Title</th>
                       <th>Short description</th>
                       <th>Description</th>
+                      <th>Event Date</th>
                       <th>Photo</th>
                       <th>View Details</th>
 					  <th>Delete</th>
@@ -337,6 +373,7 @@ extract($_GET);
                       <td><?php echo $row[title];?> </td>
                       <td><?php echo $row[short_description]; ?></td>
                       <td><?php echo $row[description]; ?></td>
+                      <td><?php echo $row[date]; ?></td>
                       
                       <th><img src="../adminupload/<?php echo $row[image];?>" style="width:150px;height:150px"></th>
                       
