@@ -21,9 +21,18 @@ extract($_GET);
         	}
     	
         	if($shortDescription !='' && $description!= ''){
-        	   $today = date("Y-m-d");
-        	                                                    
-    	       $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`, `date`) VALUES ('$title', '$shortDescription', '$image' , '$description', '$today')");
+        	    $today = date("Y-m-d");
+
+                $title = str_replace("'", "\'", $title);
+                $title = str_replace('"', "\"", $title);
+
+                $shortDescription = str_replace("'", "\'", $shortDescription);
+                $shortDescription = str_replace('"', "\"", $shortDescription);
+
+                $description = str_replace("'", "\'", $description);
+                $description = str_replace('"', "\"", $description);
+
+                $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`, `date`) VALUES ('$title', '$shortDescription', '$image' , '$description', '$today')");
     	       
     	       $insid = $db->lastInsertId();
     	    
@@ -176,7 +185,17 @@ extract($_GET);
 		  {
 		      $aid= $_POST['aid'];
 		      $filename = stripslashes($_FILES['image']['name']);
-		      if(!empty($filename)) {
+
+              $title = str_replace("'", "\'", $title);
+              $title = str_replace('"', "\"", $title);
+
+              $shortDescription = str_replace("'", "\'", $shortDescription);
+              $shortDescription = str_replace('"', "\"", $shortDescription);
+
+              $description = str_replace("'", "\'", $description);
+              $description = str_replace('"', "\"", $description);
+
+          if(!empty($filename)) {
 		          $filepath ="../adminupload/".$imagefile;
 		          if(file_exists($filepath)) {
 		              unlink($filepath);

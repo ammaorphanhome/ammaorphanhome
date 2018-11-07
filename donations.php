@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="col-md-12">
                     <?php
-                    $sth = $db->query("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' and  MONTH(date) = MONTH(CURDATE()) ORDER BY date DESC");
+                    $sth = $db->query("SELECT * FROM `orders` where `guid` >= 100 and payment_status = 'Credit' and location = 'Yes' and  MONTH(date) = MONTH(CURDATE()) ORDER BY `guid` DESC");
                     $count = $sth->rowCount(); ?>
 
                     <div class="row">

@@ -23,7 +23,20 @@ extract($_GET);
     	   if($name !='' && $amount!= ''){
                $today = date("Y-m-d");
 
-               $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`, `payment_status`, `address`, `date`) VALUES ('$name','$email','$amount','$image','$msg','$mobile', '$wishToSee', 'Credit', 'Manual', '$today' )");
+               if(empty($purpose) || $purpose == '' || $purpose == 'Others' ){
+                   $purpose = 'Donation for Amma Home';
+               }
+
+               $name = str_replace("'", "\'", $name);
+               $name = str_replace('"', "\"", $name);
+
+               $email = str_replace("'", "\'", $email);
+               $email = str_replace('"', "\"", $email);
+
+               $msg = str_replace("'", "\'", $msg);
+               $msg = str_replace('"', "\"", $msg);
+
+               $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`, `payment_status`, `address`, `date`, `donation_option`) VALUES ('$name','$email','$amount','$image','$msg','$mobile', '$wishToSee', 'Credit', 'Manual', '$today', '$purpose')");
     	       
     	       $insid = $db->lastInsertId();
     	    
@@ -92,8 +105,8 @@ extract($_GET);
 						<h3 class="card-title">Add 'Manual/Bank Payment' - Donar Details</h3>
 
 						<div class="card-body">
-							<form role="form" method="post"
-								action="<?php echo $_SERVER['PHP_SELF']; ?>"
+							<form role="form" method="post" id="donations"
+                                  action="<?php echo $_SERVER['PHP_SELF']; ?>"
 								enctype="multipart/form-data" onsubmit="return validate();">
 								
 								<div class="form-group">
@@ -112,7 +125,46 @@ extract($_GET);
                                     <input type="text" class="form-control" maxlength="10" pattern="^\d{10}$" id="mobile"
                                            name="mobile" placeholder="eg. 9999999999">
                                 </div>
-    
+
+                                <div class="form-group">
+
+                                    <label for="donation_options">Donation Options to Sponsor at Amma Orphan Home:</label><br/>
+                                    <input type="radio" id="sponsorForYear" name="donationOption" value="35000">
+                                    <label for="sponsorForYear">Adopt a Child for an Year - ₹ 35,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="sponsorForMonth" name="donationOption" value="3000">
+                                    <label for="sponsorForMonth">Adopt a Child for a Month - ₹ 3,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="educationForYear" name="donationOption" value="24000">
+                                    <label for="educationForYear">A Child's Education for an Year - ₹ 24,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="maintenanceForYear" name="donationOption" value="10000">
+                                    <label for="maintenanceForYear">A Child's Maintenance for an Year - ₹ 10,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="homeForMonth" name="donationOption" value="15000">
+                                    <label for="homeForMonth">Home Maintenance for a Month - ₹ 15,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="eldersForYear" name="donationOption" value="24000">
+                                    <label for="eldersForYear">An Elder's Maintenance for an Year - ₹ 24,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="fullMealForDay" name="donationOption" value="7500">
+                                    <label for="fullMealForDay">Full Day Meals at Amma Home - ₹ 7,500</label>
+                                    </input> <br/>
+                                    <input type="radio" id="lunchForDay" name="donationOption" value="3000">
+                                    <label for="lunchForDay">Lunch/Dinner for a Day - ₹ 3,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="breakfastForDay" name="donationOption" value="1000">
+                                    <label for="breakfastForDay">Breakfast for a Day - ₹ 1,000</label>
+                                    </input> <br/>
+                                    <input type="radio" id="snacksForDay" name="donationOption" value="500">
+                                    <label for="snacksForDay">Snacks for a Day - ₹ 500</label>
+                                    </input> <br/>
+                                    <input type="radio" id="others" name="donationOption" value="Others">
+                                    <label for="others">Other Cause</label>
+                                    </input> <br/>
+                                    <input type="hidden" id="purpose" name="purpose"/>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="amount" class="control-label">Donation Amount</label>
                                     <input type="number" class="form-control" id="amount" name="amount" placeholder="₹1000.00" required>
@@ -131,7 +183,7 @@ extract($_GET);
                                 </div>
     
                                 <div class="form-group" class="control-label">
-                                    <label for="message">Note</label>
+                                    <label for="message">Notes</label>
                                     <textarea cols="30" rows="5" class="form-control" id="message" name="msg"
                                               placeholder="eg. This donation is for the children who needs food."></textarea>
                                 </div>
@@ -178,9 +230,13 @@ extract($_GET);
                     <label class="control-label">Phone</label>
                     <input readonly class="form-control" value="<?php echo $row[mobile];?>">
                   </div>
-				 
-				  
-				   <div class="form-group">
+
+                  <div class="form-group">
+                      <label class="control-label">Donation Option</label>
+                      <input readonly class="form-control" value="<?php echo $row[donation_option];?>">
+                  </div>
+
+                  <div class="form-group">
                     <label class="control-label">Donation Amount</label>
                     <input readonly class="form-control" value="<?php echo $row[price];?>">
                   </div>
@@ -251,7 +307,7 @@ extract($_GET);
 						$m = 1;
 						 while($row = $sth->fetch()) {
                         ?>
-                    <tr class="row">
+                    <tr>
                       <td><?php echo $m; ?></td>
                       <td><?php echo $row[name];?> </td>
                       <td><?php echo $row[email]; ?></td>
@@ -290,6 +346,40 @@ extract($_GET);
     </div>
 	<?php include "footer.php";?>
     <!-- Javascripts-->
+
+    <script type="text/javascript">
+        // to remove from global namespace
+        (function() {
+            // onclick vs. onchange
+            var options = document.forms['donations'].elements['donationOption'];
+            for (var i=0, len=options.length; i<len; i++) {
+                options[i].onclick = function() {
+                    setAmount(this);
+                };
+                options[i].onchange = function() {
+                    setAmount(this);
+                };
+                setAmount = function(current) {
+                    var str  = current.value;
+                    if(str == 'Others' || str == '' ){
+                        document.getElementById("amount").value = '';
+                        document.getElementById("amount").readOnly = false;
+                        document.getElementById("purpose").value = "Donation for Amma Home";
+                    } else {
+                        var selector = 'label[for=' + current.id + ']';
+                        var label = document.querySelector(selector);
+                        var text = label.innerHTML;
+
+                        text = text.substr(0, text.indexOf("-") - 1);
+                        document.getElementById("purpose").value = text;
+                        document.getElementById("amount").value = str;
+                        document.getElementById("amount").readOnly = true;
+                    }
+                };
+            }
+        }());
+    </script>
+
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/essential-plugins.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -298,6 +388,9 @@ extract($_GET);
     <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
+
+
+
 	<script>
 	function delete1()
 	{

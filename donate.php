@@ -15,7 +15,15 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
         $purpose = 'Donation for Amma Home';
     }
 
-    //echo "INSERT INTO `orders`(`name`,`email`,`price`,`image`) VALUES ('$name','$email','$amount','$image')";exit;
+    $name = str_replace("'", "\'", $name);
+    $name = str_replace('"', "\"", $name);
+
+    $email = str_replace("'", "\'", $email);
+    $email = str_replace('"', "\"", $email);
+
+    $msg = str_replace("'", "\'", $msg);
+    $msg = str_replace('"', "\"", $msg);
+
     $sth = $db->query("INSERT INTO `orders`(`name`,`email`,`price`,`image`,`note`,`mobile`, `location`, `donation_option`) VALUES ('$name','$email','$amount','$image','$msg','$mobile','$wishToSee', '$purpose')");
     $insid = $db->lastInsertId();
     if ($sth == true) { ?>
@@ -67,18 +75,18 @@ if (isset($_POST) && $_POST['submit'] == 'Donate') {
 
                             <div class="form-group">
                                 <label for="name">Full Name:</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="eg. Raj Kumar">
+                                <input type="text" class="form-control" id="name" name="name" required="required" placeholder="eg. Raj Kumar">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email"
+                                <input type="email" class="form-control" id="email" name="email" required="required"
                                        placeholder="eg. info@ammaorphanhome.org">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Phone:</label>
-                                <input type="text" class="form-control" maxlength="10" pattern="^\d{10}$" id="email"
+                                <input type="text" class="form-control" maxlength="10" pattern="[7-9]{1}[0-9]{9}" id="email" required="required"
                                        name="mobile" placeholder="eg. 9999999999">
                             </div>
 
