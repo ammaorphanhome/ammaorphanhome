@@ -104,14 +104,22 @@
                             <?php                    $sth = $db->query("SELECT * FROM `orders` where `guid` >= 74 and payment_status = 'Credit' and  location = 'Yes' ORDER BY date DESC  limit 4");                    $count = $sth->rowCount();                    if ($count > 0) {                        $m = 1;                        while ($row = $sth->fetch()) {                            ?>
                                 <div class="col-md-3">
                                     <div class="probootstrap-donors text-center probootstrap-animate fadeInUp probootstrap-animated">
-                                        <figure class="media"> <img src="img/person_6.jpg" class="img-responsive"> </figure>
+                                        <figure class="media">
+                                        <?php if (!empty($row[image])) { ?>
+                                            <img src="../adminupload/<?php echo $row[image];?>" style="width: 80px; height:80px;"  alt="image" class="img-responsive">
+                                        <?php } else { ?>
+                                            <img src="img/person_6.jpg" style="width: 80px; height:80px;" class="img-responsive">
+                                        <?php } ?>
+
+                                        </figure>
                                         <div class="text">
                                             <h3><?php echo $row[name]; ?></h3>
                                             <p class="donated">Donated <span class="money">₹<?php echo $row[price]; ?>/-</span> </p>
                                         </div>
                                     </div>
                                 </div>
-                                <?php $m++;                        }                    } ?>
+                                <?php $m++;
+                            } } ?>
                         </div>
                     </div>
                 </section>
