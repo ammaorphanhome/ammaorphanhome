@@ -32,8 +32,10 @@ echo "adddd===>".$add;
 			<li class="<?php if($add==='events'){ echo "active"; }?>"><a href="events.php"><i class="fa fa-photo"></i><span>Videos</span></a></li>
 			
 			<li class="<?php if($add==='news_events'){ echo "active"; }?>"><a href="news_events.php"><i class="fa fa-file"></i><span>News & Events</span></a></li>
-			
-			<li class="<?php if($add==='manual_donation'){ echo "active"; }?>"><a href="manual_donation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
+
+            <li class="<?php if($add==='causes'){ echo "active"; }?>"><a href="causes.php"><i class="fa fa-child"></i><span>Latest Needs</span></a></li>
+
+            <li class="<?php if($add==='manual_donation'){ echo "active"; }?>"><a href="manual_donation.php"><i class="fa fa-money"></i><span>Manual Donations</span></a></li>
 			
 			<li class="<?php if($add==='ysa'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-check"></i><span>Successful Site Donations</span></a></li>
 			

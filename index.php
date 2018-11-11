@@ -46,6 +46,132 @@
                         </div>
                     </div>
                 </section>
+
+
+            <section class="probootstrap-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <h2>Needs of the Amma Home </h2>
+                            <p class="lead">Latest Amma Home needs, please try fulfill by donating.</p>
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <h2>News and Events </h2>
+                            <p class="lead">Follow our latest, and events, activities, celebrations, etc.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-5 probootstrap-animate" data-animate-effect="fadeIn">
+                            <div class="owl-carousel owl-carousel-fullwidth probootstrap-cause">
+                                <?php
+                                $sth1 = $db->query("SELECT * FROM `causes` ORDER BY date DESC limit 10");
+                                $count1 = $sth1->rowCount();
+                                if ($count1 > 0) {
+                                    $m1 = 1;
+                                    while ($row1 = $sth1->fetch()) { ?>
+                                        <div class="item">
+                                            <div class="probootstrap-cause-inner">
+
+                                                <?php  if (empty($row1[image])) {
+                                                } else { ?>
+                                                    <figure> <img class="text-center" src="../adminupload/<?php echo $row1[image];?>" alt="image" class="img-responsive"> </figure>
+                                                <?php } ?>
+                                                <br>
+
+                                                <?php  if (empty($row1[date])) {
+                                                } else {
+                                                    $newDate1 = date("F jS, Y", strtotime($row1[date])); ?>
+                                                    <span class="probootstrap-date" style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $newDate1; ?></span>
+                                                <?php } ?>
+
+                                                <h4><a href="news_events.php"><span style="margin-bottom:10px; padding-bottom: 5px;"><?php echo $row1[title]; ?></span></a></h4>
+                                                <span style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $row1[short_description]; ?></span>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        $m1++;
+                                    }
+                                } ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-5 probootstrap-animate" data-animate-effect="fadeIn">
+                            <div class="owl-carousel owl-carousel-fullwidth probootstrap-cause">
+                                <?php
+                                $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 10");
+                                $count = $sth->rowCount();
+                                if ($count > 0) {
+                                    $m = 1;
+                                    while ($row = $sth->fetch()) { ?>
+                                        <div class="item">
+                                            <div class="probootstrap-cause-inner">
+
+                                                <?php  if (empty($row[image])) {
+                                                } else { ?>
+                                                    <figure> <img class="text-center" src="../adminupload/<?php echo $row[image];?>" alt="image" class="img-responsive"> </figure>
+                                                <?php } ?>
+                                                <br>
+
+                                                <?php  if (empty($row[date])) {
+                                                } else {
+                                                    $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                                    <span class="probootstrap-date" style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $newDate; ?></span>
+                                                <?php } ?>
+
+                                                <h4><a href="news_events.php"><span style="margin-bottom:10px; padding-bottom: 5px;"><?php echo $row[title]; ?></span></a></h4>
+                                                <span style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $row[short_description]; ?></span>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        $m++;
+                                    }
+                                } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+                <section class="probootstrap-section probootstrap-bg probootstrap-section-dark" style="background-image: url(img/hero_bg_bw_2.jpg)" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+                                <h2>Latest Donations</h2>
+                                <p class="lead">Thank you for your kind donations. Your generosity will directly benefit the children of Amma Orphan Home.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <?php                    $sth = $db->query("SELECT * FROM `orders` where `guid` >= 74 and payment_status = 'Credit' and  location = 'Yes' ORDER BY date DESC  limit 4");                    $count = $sth->rowCount();                    if ($count > 0) {                        $m = 1;                        while ($row = $sth->fetch()) {                            ?>
+                                <div class="col-md-3">
+                                    <div class="probootstrap-donors text-center probootstrap-animate fadeInUp probootstrap-animated">
+                                        <figure class="media">
+                                        <?php if (!empty($row[image])) { ?>
+                                            <img src="../adminupload/<?php echo $row[image];?>" style="width: 80px; height:80px;"  alt="image" class="img-responsive">
+                                        <?php } else { ?>
+                                            <img src="img/person_6.jpg" style="width: 80px; height:80px;" class="img-responsive">
+                                        <?php } ?>
+
+                                        </figure>
+                                        <div class="text">
+                                            <h3><?php echo $row[name]; ?></h3>
+                                            <p class="donated">Donated <span class="money">₹<?php echo $row[price]; ?>/-</span> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php $m++;
+                            } } ?>
+                        </div>
+                    </div>
+                </section>
                 <section class="probootstrap-section" style="padding-bottom:0px;">
                     <div class="container">
                         <div class="row">
@@ -92,37 +218,6 @@
                         </div>
                     </div>
                 </section>
-                <section class="probootstrap-section probootstrap-bg probootstrap-section-dark" style="background-image: url(img/hero_bg_bw_2.jpg)" data-stellar-background-ratio="0.5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
-                                <h2>Latest Donations</h2>
-                                <p class="lead">Thank you for your kind donations. Your generosity will directly benefit the children of Amma Orphan Home.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <?php                    $sth = $db->query("SELECT * FROM `orders` where `guid` >= 74 and payment_status = 'Credit' and  location = 'Yes' ORDER BY date DESC  limit 4");                    $count = $sth->rowCount();                    if ($count > 0) {                        $m = 1;                        while ($row = $sth->fetch()) {                            ?>
-                                <div class="col-md-3">
-                                    <div class="probootstrap-donors text-center probootstrap-animate fadeInUp probootstrap-animated">
-                                        <figure class="media">
-                                        <?php if (!empty($row[image])) { ?>
-                                            <img src="../adminupload/<?php echo $row[image];?>" style="width: 80px; height:80px;"  alt="image" class="img-responsive">
-                                        <?php } else { ?>
-                                            <img src="img/person_6.jpg" style="width: 80px; height:80px;" class="img-responsive">
-                                        <?php } ?>
-
-                                        </figure>
-                                        <div class="text">
-                                            <h3><?php echo $row[name]; ?></h3>
-                                            <p class="donated">Donated <span class="money">₹<?php echo $row[price]; ?>/-</span> </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php $m++;
-                            } } ?>
-                        </div>
-                    </div>
-                </section>
                 <section class="probootstrap-section  probootstrap-section-colored">
                     <div class="container">
                         <div class="row">
@@ -157,7 +252,70 @@
                         </div>
                     </div>
                 </section>
-                <section class="probootstrap-half">
+
+            <section class="probootstrap-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+                            <h2>News and Events </h2>
+                            <p class="lead">Follow our latest news and events, which includes news, events, activities, latest causes and etc.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel slide" id="myCarousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 10");
+                                    $count = $sth->rowCount();
+                                    if ($count > 0) {
+                                    $m = 1;
+                                    while ($row = $sth->fetch()) {
+                                    if($m == 1){ ?>
+                                    <div class="item active">
+                                        <?php } else { ?>
+                                        <div class="item">
+                                            <?php } ?>
+                                            <div class="col-md-4">
+                                                <?php  if (empty($row[date])) {
+                                                } else {
+                                                    $newDate = date("F jS, Y", strtotime($row[date])); ?>
+                                                    <span class="probootstrap-date" style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $newDate; ?></span>
+                                                <?php } ?>
+
+                                                <h4><a href="news_events.php"><span style="margin-bottom:10px; padding-bottom: 5px;"><?php echo $row[title]; ?></span></a></h4>
+                                                <span style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $row[short_description]; ?></span> </br></br>
+                                                <?php  if (empty($row[image])) {
+                                                } else { ?>
+                                                    <figure><img src="../adminupload/<?php echo $row[image];?>" alt="image" class="img-responsive"></figure>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+
+                                        <?php
+                                        $m++;
+                                        }
+                                        } ?>
+                                    </div>
+                                    <div class="icon">
+                                        <a style="width:0%; margin-top:200px"  class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                            <i style="color: black; width: 20px;height: 20px;" class="fa fa-chevron-circle-left fa-lg" ></i></a>
+                                    </div>
+                                    <div class="icon">
+                                        <a style="width:0%; margin-top:200px"  class="right carousel-control" href="#myCarousel" data-slide="next">
+                                            <i style="color: black; width: 20px;height: 20px;" class="fa fa-chevron-circle-right fa-lg" ></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+
+            <section class="probootstrap-half">
                     <div class="image">
                         <div class="image-bg"> <img src="img/img_sq_5_big.jpg"> </div>
                     </div>
@@ -171,44 +329,17 @@
                         </div>
                     </div>
                 </section>
-                <section class="probootstrap-section">
+
+            <section class="probootstrap-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-3 probootstrap-animate">
-                                <h3>News and Events </h3>
-                                <?php
-                                $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 2");
-                                $count = $sth->rowCount();
-                                if ($count > 0) {
-                                    $m = 1;
-                                    while ($row = $sth->fetch()) { ?>
-                                        <ul class="probootstrap-news">
-                                            <li>
-                                                <?php  if (empty($row[date])) {
-                                                } else {
-                                                    $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                                    <p class="probootstrap-date"><?php echo $newDate; ?></p>
-                                                <?php } ?>
-
-                                                <h3><a href="news_events.php"><p><?php echo $row[title]; ?></p></a></h3>
-                                                <p><?php echo $row[short_description]; ?></p>
-                                            </li>
-                                        </ul>
-
-                                        <?php
-                                        $m++;
-                                    }
-                                } ?>
-                                <p><a href="news_events.php" class="btn btn-primary">View all news</a></p>
-                            </div>
-
-                            <div class="col-md-5 probootstrap-animate">
+                            <div class="col-md-6 probootstrap-animate">
                                 <h3>Our Services</h3>
                                  <p><iframe width="420" height="315" allowfullscreen="allowfullscreen"  frameBorder="0" src="https://www.youtube.com/embed/Jb6qk78c6S0"> </iframe></p>
                                 
                                 <p><a href="about.php" class="btn btn-primary">Learn More</a></p>
                             </div>
-                            <div class="col-md-4 probootstrap-animate">
+                            <div class="col-md-6 probootstrap-animate">
                                 <h3>Gallery</h3>
                                 <div class="owl-carousel owl-carousel-fullwidth">
                                     <div class="item">
@@ -238,10 +369,33 @@
                         </div>
                     </div>
                 </section>
-                <?php include('footer.php'); ?>
+
+            <?php include('footer.php'); ?>
                     <script src="js/scripts.min.js"></script>
                     <script src="js/main.min.js"></script>
                     <script src="js/custom.js"></script>
+
+                <script>
+                    $('#myCarousel').carousel({
+                        interval: 6000
+                    })
+
+                    $('.carousel .item').each(function(){
+                        var next = $(this).next();
+                        if (!next.length) {
+                            next = $(this).siblings(':first');
+                        }
+                        next.children(':first-child').clone().appendTo($(this));
+
+                        if (next.next().length>0) {
+                            next.next().children(':first-child').clone().appendTo($(this));
+                        }
+                        else {
+                            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+                        }
+                    });
+
+                </script>
         </body>
 
     </html>
