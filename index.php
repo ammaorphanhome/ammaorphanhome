@@ -1,9 +1,49 @@
 <?php ob_start();error_reporting(0);require "cw_admin/lib/config.php";?>
+
+	<?php include('comments-functions.php'); ?>
     <!DOCTYPE php>
     <html lang="en">
     <meta http-equiv="content-type" content="text/php;charset=UTF-8" />
     <?php include('header.php'); ?>
 
+ 	<style>
+        form button { margin: 5px 0px; }
+        textarea { display: block; margin-bottom: 10px; }
+        /*post*/
+        .post { border: 1px solid #ccc; margin-top: 10px; }
+        /*comments*/
+        .comments-section { margin-top: 10px; border: 1px solid #ccc; }
+        .comment { margin-bottom: 10px; }
+        .comment .comment-name { font-weight: bold; }
+        .comment .comment-date {
+            font-style: italic;
+            font-size: 0.8em;
+        }
+        .comment .reply-btn, .edit-btn { font-size: 0.8em; }
+        .comment-details { width: 91.5%; float: left; }
+        .comment-details p { margin-bottom: 0px; }
+        .comment .profile_pic {
+            width: 35px;
+            height: 35px;
+            margin-right: 5px;
+            float: left;
+            border-radius: 50%;
+        }
+        /*replies*/
+        .reply { margin-left: 30px; }
+        .reply_form {
+            margin-left: 40px;
+            display: none;
+        }
+        #comment_form { margin-top: 10px; }
+
+        .error {
+            font-family: sans-serif;
+            color: #E70000;
+            font-size: 16px;
+        }
+    </style>
+    
         <body>
             <?php include('nav.php'); ?>
                 <section class="probootstrap-hero" style="background-image: url(img/hero_bg_bw_1.jpg)" data-stellar-background-ratio="0.5">
@@ -51,24 +91,11 @@
             <section class="probootstrap-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-5 text-center">
-                            <h2>Needs of the Amma Home </h2>
-                            <p class="lead">Latest Amma Home needs, please try fulfill by donating.</p>
-                        </div>
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-5 text-center">
-                            <h2>News and Events </h2>
-                            <p class="lead">Follow our latest, and events, activities, celebrations, etc.</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1">
-                        </div>
                         <div class="col-md-5 probootstrap-animate" data-animate-effect="fadeIn">
-                            <div class="owl-carousel owl-carousel-fullwidth probootstrap-cause">
+                            <div class=text-center>
+                                <h2>Needs of Amma Home </h2>
+                            </div>
+                            <div class="owl-carousel owl-carousel-fullwidth probootstrap-cause ">
                                 <?php
                                 $sth1 = $db->query("SELECT * FROM `causes` ORDER BY date DESC limit 10");
                                 $count1 = $sth1->rowCount();
@@ -76,7 +103,7 @@
                                     $m1 = 1;
                                     while ($row1 = $sth1->fetch()) { ?>
                                         <div class="item">
-                                            <div class="probootstrap-cause-inner">
+                                            <div class="probootstrap-cause-inner probootstrap-image-text-block">
 
                                                 <?php  if (empty($row1[image])) {
                                                 } else { ?>
@@ -99,11 +126,13 @@
                                     }
                                 } ?>
                             </div>
+                            <p class="text-center"><a href="home-needs.php" class="btn btn-primary">View all</a></p>
                         </div>
 
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-5 probootstrap-animate" data-animate-effect="fadeIn">
+                        <div class="col-md-5 col-md-push-1 probootstrap-animate" data-animate-effect="fadeIn">
+                            <div class=text-center>
+                                <h2>Latest News and Events </h2>
+                            </div>
                             <div class="owl-carousel owl-carousel-fullwidth probootstrap-cause">
                                 <?php
                                 $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 10");
@@ -135,6 +164,7 @@
                                     }
                                 } ?>
                             </div>
+                            <p class="text-center"><a href="news_events.php" class="btn btn-primary">View all</a></p>
                         </div>
                     </div>
                 </div>
@@ -251,95 +281,18 @@
                             </div>
                         </div>
                     </div>
-                </section>
-
-            <section class="probootstrap-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
-                            <h2>News and Events </h2>
-                            <p class="lead">Follow our latest news and events, which includes news, events, activities, latest causes and etc.</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="carousel slide" id="myCarousel">
-
-                                <div class="carousel-inner">
-                                    <?php
-                                    $sth = $db->query("SELECT * FROM `news` ORDER BY date DESC limit 10");
-                                    $count = $sth->rowCount();
-                                    if ($count > 0) {
-                                    $m = 1;
-                                    while ($row = $sth->fetch()) {
-                                    if($m == 1){ ?>
-                                    <div class="item active">
-                                        <?php } else { ?>
-                                        <div class="item">
-                                            <?php } ?>
-                                            <div class="col-md-4">
-                                                <?php  if (empty($row[date])) {
-                                                } else {
-                                                    $newDate = date("F jS, Y", strtotime($row[date])); ?>
-                                                    <span class="probootstrap-date" style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $newDate; ?></span>
-                                                <?php } ?>
-
-                                                <h4><a href="news_events.php"><span style="margin-bottom:10px; padding-bottom: 5px;"><?php echo $row[title]; ?></span></a></h4>
-                                                <span style="margin-bottom:3px; padding-bottom: 3px;"><?php echo $row[short_description]; ?></span> </br></br>
-                                                <?php  if (empty($row[image])) {
-                                                } else { ?>
-                                                    <figure><img src="../adminupload/<?php echo $row[image];?>" alt="image" class="img-responsive"></figure>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-
-                                        <?php
-                                        $m++;
-                                        }
-                                        } ?>
-                                    </div>
-                                    <div class="icon">
-                                        <a style="width:0%; margin-top:200px"  class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                            <i style="color: black; width: 20px;height: 20px;" class="fa fa-chevron-circle-left fa-lg" ></i></a>
-                                    </div>
-                                    <div class="icon">
-                                        <a style="width:0%; margin-top:200px"  class="right carousel-control" href="#myCarousel" data-slide="next">
-                                            <i style="color: black; width: 20px;height: 20px;" class="fa fa-chevron-circle-right fa-lg" ></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
             </section>
 
-
-            <section class="probootstrap-half">
-                    <div class="image">
-                        <div class="image-bg"> <img src="img/img_sq_5_big.jpg"> </div>
-                    </div>
-                    <div class="text">
-                        <div class="probootstrap-animate">
-                            <h3>OUR STORY</h3>
-                            <p align="justify">Amma Orphanage, Known as the "Amma Anadha Saranalayam" is a non profit organisation Founded by Mr. E. Teja with the objective to provide solution to the orphans. This is to be achieved by providing them with free basic school education, healthy home atmosphere, guiding these children towards understanding the need for healthy living and secure a place for them among the rest of the society.
-                                <br>
-                                <br> The motto encourages us in working towards promoting "Universal Brotherhood" and creating wellness in physical-mental-spiritual areas for all children under its care in school and orphanage.</p>
-                            <p><a href="about.php" class="btn btn-primary btn-lg">Read More</a></p>
-                        </div>
-                    </div>
-                </section>
-
-            <section class="probootstrap-section">
+			<section class="probootstrap-section">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 probootstrap-animate">
                                 <h3>Our Services</h3>
-                                 <p><iframe width="420" height="315" allowfullscreen="allowfullscreen"  frameBorder="0" src="https://www.youtube.com/embed/Jb6qk78c6S0"> </iframe></p>
+                                 <p><iframe width="475" height="350" allowfullscreen="allowfullscreen"  frameBorder="0" src="https://www.youtube.com/embed/Jb6qk78c6S0"> </iframe></p>
                                 
                                 <p><a href="about.php" class="btn btn-primary">Learn More</a></p>
                             </div>
-                            <div class="col-md-6 probootstrap-animate">
+                            <div class="col-md-5 probootstrap-animate">
                                 <h3>Gallery</h3>
                                 <div class="owl-carousel owl-carousel-fullwidth">
                                     <div class="item">
@@ -370,12 +323,101 @@
                     </div>
                 </section>
 
-            <?php include('footer.php'); ?>
-                    <script src="js/scripts.min.js"></script>
-                    <script src="js/main.min.js"></script>
-                    <script src="js/custom.js"></script>
+            <section class="probootstrap-half">
+                    <div class="image">
+                        <div class="image-bg"> <img src="img/img_sq_5_big.jpg"> </div>
+                    </div>
+                    <div class="text">
+                        <div class="probootstrap-animate">
+                            <h3>OUR STORY</h3>
+                            <p align="justify">Amma Orphanage, Known as the "Amma Anadha Saranalayam" is a non profit organisation Founded by Mr. E. Teja with the objective to provide solution to the orphans. This is to be achieved by providing them with free basic school education, healthy home atmosphere, guiding these children towards understanding the need for healthy living and secure a place for them among the rest of the society.
+                                <br>
+                                <br> The motto encourages us in working towards promoting "Universal Brotherhood" and creating wellness in physical-mental-spiritual areas for all children under its care in school and orphanage.</p>
+                            <p><a href="about.php" class="btn btn-primary btn-lg">Read More</a></p>
+                        </div>
+                    </div>
+            </section>
 
-                <script>
+            <section class="probootstrap-half">
+                <div class="container">
+                    </br>
+                    <div class="row">
+                        <div class="col-md-6 probootstrap-animate">
+                            <div class="col-md-12 probootstrap-animate">
+                                <div class="probootstrap-cause-inner probootstrap-cause" >
+                                    <h3>Leave a Comment</h3>
+                                </div>
+                                <!-- if user is not signed in, tell them to sign in. If signed in, present them with comment form -->
+                                <form method="post" id="comment_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                                      class="clearfix probootstrap-form">
+
+                                    <div class="error" id="error_comment"></div>
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" class="form-control" maxlength="100" id="name" name="name" required="required" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required="required" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Comment</label>
+                                        <textarea cols="30" rows="4" maxlength="1000" class="form-control" name="comment_text" id="comment_text"  name="comment_text" id="comment_text" required="required" ></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <a class="btn btn-primary" id="submit_comment_index" name="sub" >Submit Comment</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 probootstrap-animate">
+                            <div class="col-md-12 probootstrap-animate">
+                                <div class="probootstrap-cause-inner probootstrap-cause" >
+                                    <h3>Latest Comments </h3>
+                                </div>
+                                <!-- comments wrapper -->
+                                <div id="comments-wrapper">
+                                    <?php if (isset($comments)):
+                                        $m1 = 0 ?>
+                                        <!-- Display comments -->
+                                        <?php foreach ($comments as $comment):
+                                        if ($m1 <= 1) {  ?>
+                                            <!-- comment -->
+                                            <div class="comment clearfix">
+                                                <div class="comment-details panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <span class="comment-name">By <?php echo $comment['name'] ?> On </span>
+                                                        <span class="comment-date"><?php echo date("M j, Y h:i A", strtotime($comment["created_at"])); ?></span>
+                                                    </div>
+                                                    <div class="panel-body"><p><?php echo $comment['body']; ?></p></div>
+                                                </div>
+                                            </div>
+                                            <!-- // comment -->
+                                        <?php } $m1 ++;
+                                    endforeach ?>
+                                    <?php else: ?>
+                                        <h2>Be the first to comment on this post</h2>
+                                    <?php endif ?>
+                                </div><!-- comments wrapper -->
+                                <div class="form-group">
+                                    <p><a href="comments.php" class="btn btn-primary">View All Comments</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <?php include('footer.php'); ?>
+            
+               
+               <script src="js/scripts.min.js"></script>
+               <script src="js/main.min.js"></script>
+               <script src="js/custom.js"></script>
+               <script src="js/comments.js"></script>
+               
+               <script>
                     $('#myCarousel').carousel({
                         interval: 6000
                     })

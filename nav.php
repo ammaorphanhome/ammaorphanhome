@@ -9,7 +9,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
-                <li><a href="home-needs.php">Home Needs</a></li>
+                <li><a href="home-needs.php">Needs</a></li>
                 <li><a href="news_events.php">News & Events</a></li>
 
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Get Involved</a>
@@ -20,7 +20,6 @@
                     </ul>
                 </li>
 
-                <!--<li><a href="comments.php">Comments</a></li>-->
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Gallery</a>
                     <ul class="dropdown-menu">
                         <li><a href="photos.php">Photos</a></li>
@@ -28,6 +27,7 @@
                     </ul>
                 </li>
                 <li><a href="contact.php">Contact</a></li>
+                <li><a href="comments.php">Comment</a></li>
                 <li class="probootstra-cta-button last"><a href="donate.php" class="btn btn-primary">Donate</a></li>
             </ul>
         </div>

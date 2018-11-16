@@ -1,3 +1,4 @@
+
 -- MySQL dump 10.13  Distrib 5.6.41, for Linux (x86_64)
 --
 -- Host: localhost    Database: readytol_ammaorphan
@@ -18,6 +19,13 @@
 --
 -- Table structure for table `access`
 --
+
+-- DATABASE AND user creation
+-- CREATE DATABASE ammasitedb;
+-- CREATE USER 'amma'@'localhost' IDENTIFIED BY 'password';
+-- GRANT ALL PRIVILEGES ON ammasitedb.* TO 'amma'@'localhost';
+-- FLUSH PRIVILEGES;
+-- DROP USER 'user'@'localhost'
 
 DROP TABLE IF EXISTS `access`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -346,7 +354,119 @@ ALTER TABLE events ADD can_see varchar(10);
 // orders
 ALTER TABLE orders ADD donation_option text;
 
+ALTER TABLE news ADD date text;
+
+
 Update album set can_see='Yes' WHERE 1=1;
 Update past_conferences set can_see='Yes' WHERE 1=1;
 Update events set can_see='Yes' WHERE 1=1;
 Update orders set donation_option = 'Others' WHERE 1=1;
+
+--
+-- Table structure for table `causes`
+--
+
+DROP TABLE IF EXISTS `causes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `causes` (
+  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` text NULL,
+  `short_description` text NULL,
+  `image` varchar(200) NULL,
+  `description` text  NULL,
+  `date` date NULL,
+  PRIMARY KEY (`guid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+LOCK TABLES `causes` WRITE;
+/*!40000 ALTER TABLE `causes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `causes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` text NULL,
+  `email` text NULL,
+  `body` text  NULL,
+  `created_at` date NULL,
+  `updated_at` date NULL,
+  PRIMARY KEY (`guid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `replies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `replies` (
+  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `comment_guid` bigint(20) NOT NULL,
+  `name` text NULL,
+  `email` text NULL,
+  `body` text  NULL,
+  `created_at` date NULL,
+  `updated_at` date NULL,
+  PRIMARY KEY (`guid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+LOCK TABLES `replies` WRITE;
+/*!40000 ALTER TABLE `replies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `replies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+ALTER TABLE `replies` MODIFY `created_at` timestamp null;
+ALTER TABLE `replies` MODIFY `updated_at` timestamp null;
+ALTER TABLE `comments` MODIFY `created_at` timestamp null;
+ALTER TABLE `comments` MODIFY `updated_at` timestamp null;
+
+--
+-- Table structure for table `tbl_comment`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_comment` (
+  `comment_id` int(11) NOT NULL,
+  `parent_comment_id` int(11) NOT NULL,
+  `comment` varchar(200) NOT NULL,
+  `comment_sender_name` varchar(40) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+
