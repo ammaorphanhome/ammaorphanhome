@@ -122,7 +122,7 @@ extract($_GET);
                                 
                                 <div class="form-group">
                                     <label for="mobile" class="control-label">Phone</label>
-                                    <input type="text" class="form-control" maxlength="10" pattern="^\d{10}$" id="mobile"
+                                    <input type="text" class="form-control" maxlength="10" pattern="[7-9]{1}[0-9]{9}" id="mobile"
                                            name="mobile" placeholder="eg. 9999999999">
                                 </div>
 

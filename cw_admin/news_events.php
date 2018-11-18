@@ -44,7 +44,7 @@ extract($_GET);
 
                 $sth = $db->query("INSERT INTO `news` (`title`, `short_description`, `image`, `description`, `date`) 
                                             VALUES ('$title', '$shortDescription', '$image' , '$description', '$new_date')");
-    	       
+
     	       $insid = $db->lastInsertId();
     	    
     	       

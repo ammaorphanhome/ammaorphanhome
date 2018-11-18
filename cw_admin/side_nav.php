@@ -40,7 +40,8 @@ echo "adddd===>".$add;
 			<li class="<?php if($add==='ysa'){ echo "active"; }?>"><a href="ysa.php"><i class="fa fa-check"></i><span>Successful Site Donations</span></a></li>
 			
 			<li class="<?php if($add==='failed_donations'){ echo "active"; }?>"><a href="failed_donations.php"><i class="fa fa-times"></i><span>Failed Site Donations</span></a></li>
-			
+
+            <li class="<?php if($add==='contacts'){ echo "active"; }?>"><a href="contacts.php"><i class="fa fa-user"></i><span>Address Book</span></a></li>
 		
 			
 			<!--li class="treeview"><a href="video.php"><i class="fa fa-laptop"></i><span>Tutorial content</span><i class="fa fa-angle-right"></i></a>

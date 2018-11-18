@@ -44,8 +44,8 @@ require "cw_admin/lib/config.php";
                 $json=json_decode($response,TRUE);
 
                 if($json['success']==true){
-                $payment=$json['payment'];
-                $data =$db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."' ,payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
+                    $payment=$json['payment'];
+                    $data =$db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."' ,payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
                 ?>
                 <div class="row">
                     <div class="col-md-5 probootstrap-animate">
@@ -77,8 +77,8 @@ require "cw_admin/lib/config.php";
                     </div>
                     <?php
                     } else{
-                    echo "payment failed";
-                    $data = $db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."',  payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."'  WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
+                        echo "payment failed";
+                        $data = $db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."',  payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."'  WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
                     ?>
                     <div class="row">
                         <div class="col-md-5 probootstrap-animate">

@@ -470,3 +470,16 @@ ALTER TABLE `tbl_comment`
 ALTER TABLE `tbl_comment`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
+CREATE TABLE `contacts` (
+  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `mobile` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` text  NULL,
+  `created_at` date NULL,
+  `updated_at` date NULL,
+  PRIMARY KEY (`guid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+LOCK TABLES `contacts` WRITE;
+UNLOCK TABLES;
