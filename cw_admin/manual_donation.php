@@ -44,8 +44,8 @@ extract($_GET);
     	       if($sth == true)  {
                    include('receipt_email.php');
 
-                   generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today);
-                   sendEmail("Donation_" .$insid. ".pdf", $name, $email);
+                   generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today, "invoice/");
+                   sendEmail("Donation_" .$insid. ".pdf", $name, $email, "invoice/");
 
     	           ?>
     	    		<script type="text/javascript">

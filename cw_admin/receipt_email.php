@@ -1,7 +1,7 @@
 <?php
 require('fpdf.php');
 
-function generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today) {
+function generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today, $directory) {
     //create pdf object
     $pdf = new FPDF('P', 'mm', 'A4');
     //add new page
@@ -80,12 +80,12 @@ function generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose
     //make a dummy empty cell as a vertical spacer
     $pdf->Cell(180, 10, '', 0, 1);//end of line
     $pdf->Cell(180, 5, 'Thank you for your generous donation!', 1, 0, 'C');
-    $pdf->Output("invoice/Donation_" .$insid. ".pdf", "F");
+    $pdf->Output($directory . "Donation_" .$insid. ".pdf", "F");
 }
 
-function sendEmail($file_name, $name, $email){
+function sendEmail($file_name, $name, $email, $directory){
     if(!empty($file_name)) {
-        $file = "invoice/" .$file_name;
+        $file = $directory . $file_name;
         $file_size = filesize($file);
         $handle = fopen($file, "r");
         $content = fread($handle, $file_size);
