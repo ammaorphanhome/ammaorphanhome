@@ -41,7 +41,13 @@ extract($_GET);
     	       $insid = $db->lastInsertId();
     	    
     	       
-    	       if($sth == true)  { ?> 
+    	       if($sth == true)  {
+                   include('receipt_email.php');
+
+                   generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today);
+                   sendEmail("Donation_" .$insid. ".pdf", $name, $email);
+
+    	           ?>
     	    		<script type="text/javascript">
               			alert('Payment details successfully added');
               			window.location="<?php echo URL; ?>manual_donation.php";

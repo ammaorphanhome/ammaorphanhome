@@ -45,16 +45,102 @@ extract($_GET);
         <?php }
 
     } else if(isset($_POST) && $_POST['submit'] == 'Email') {
-        ?>
-        <?php
-        $stremail = "info@ammaorphanhome.org";
 
-        $headers .= "From:info@ammaorphanhome.org\r\n";
-        $headers .= "Content-type: text/html\r\n";
+        $file_name = $_FILES['image']['name'];
+        if(!empty($file_name)) {
 
-        $sth = $db->query ("SELECT * FROM `contacts` where `contact_type` = '$contactType' ORDER BY `updated_at` desc, `guid` DESC");
-		$count = $sth->rowCount(); ?>
-        <?php
+            $file_type = $_FILES['image']['type'];
+            $temp_name = $_FILES['image']['tmp_name'];
+            $file = $temp_name;
+            $content = chunk_split(base64_encode(file_get_contents($file)));
+            $uid = md5(uniqid(time()));
+
+            $sth = $db->query ("SELECT * FROM `contacts` where `contact_type` = '$contactType' ORDER BY `updated_at` desc, `guid` DESC");
+            $count = $sth->rowCount(); ?>
+            <?php
+            if($count > 0) {
+                $m = 1;
+                $prefix = $sentEmailAddrress = $notSentEmailAddrress = '';
+                while($row = $sth->fetch()) {
+                    $name = $row[name];
+                    $body = " 
+                    <html> 
+                    <body>
+                       <table style='border: 0px solid #06F;padding:10px;border-radius:10px;'>
+                          <tr>
+                              <td width='500'>
+                                  <div class='maindiv'>
+<pre>Dear $name,
+
+Greetings from Amma Orphan Home!
+
+$msg
+
+</pre>
+                                  </div>
+                              </td>
+                          </tr>
+                      </table>
+                    </body>
+                    </html>";
+
+                    $eol = PHP_EOL;
+
+                    // Basic headers
+                    $header = "From: info@ammaorphanhome.org".$eol;
+                    $header .= "Reply-To: ".$replyto.$eol;
+                    $header .= "MIME-Version: 1.0\r\n";
+                    $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"";
+
+                    // Put everything else in $message
+                    $message = "--".$uid.$eol;
+                    $message .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
+                    $message .= "Content-Transfer-Encoding: 8bit".$eol.$eol;
+                    $message .= $body.$eol;
+
+                    $message .= "--".$uid.$eol;
+                    $message .= "Content-Type: ".$file_type."; name=\"".$file_name."\"".$eol;
+                    $message .= "Content-Transfer-Encoding: base64".$eol;
+                    $message .= "Content-Disposition: attachment; filename=\"".$file_name."\"".$eol;
+                    $message .= $content.$eol;
+                    $message .= "--".$uid."--";
+
+                    // send the mail
+                    if (mail($row[email], $subject, $message, $header)) {
+                        $sentEmailAddrress .= $prefix  . $row[email] ;
+                        $prefix = ',';
+                    } else {
+                        $notSentEmailAddrress .= $prefix  . $row[email] ;
+                        $prefix = ',';
+                    }
+                    $m++;
+                }
+                if(!empty($sentEmailAddrress)){
+                    echo "<script>alert('Sent an email to following addresses ==>  $sentEmailAddrress !')</script>";
+                }
+                if(!empty($notSentEmailAddrress)){
+                    echo "<script>alert('Could not send emails to following addresses ==>   $notSentEmailAddrress !')</script>";
+                }
+
+                ?>
+                <script type="text/javascript">
+                    window.location="<?php echo URL; ?>contacts.php";
+                </script>
+                <?php
+            } else {
+                header('location:'.URL.'contacts.php');
+            }
+
+        } else {
+
+            $stremail = "info@ammaorphanhome.org";
+
+            $headers .= "From:info@ammaorphanhome.org\r\n";
+            $headers .= "Content-type: text/html\r\n";
+
+            $sth = $db->query ("SELECT * FROM `contacts` where `contact_type` = '$contactType' ORDER BY `updated_at` desc, `guid` DESC");
+            $count = $sth->rowCount(); ?>
+            <?php
             if($count > 0) {
                 $m = 1;
                 $prefix = $sentEmailAddrress = $notSentEmailAddrress = '';
@@ -94,7 +180,7 @@ $msg
                     echo "<script>alert('Sent an email to following addresses ==>  $sentEmailAddrress !')</script>";
                 }
                 if(!empty($notSentEmailAddrress)){
-                    echo "<script>alert('Could not send email's to following addresses ==>   $notSentEmailAddrress !')</script>";
+                    echo "<script>alert('Could not send emails to following addresses ==>   $notSentEmailAddrress !')</script>";
                 }
 
                 ?>
@@ -105,19 +191,111 @@ $msg
             } else {
                 header('location:'.URL.'contacts.php');
             }
-
+        }
     } else if(isset($_POST) && $_POST['submit'] == 'SelectedEmail') {
 
-        $emailAddr1 = $_POST['emailAddr'];
-        $str_arr  = explode(",", $emailAddr1);
-        $headers .= "From:info@ammaorphanhome.org\r\n";
-        $headers .= "Content-type: text/html\r\n";
-        $prefix = $sentEmailAddrress = $notSentEmailAddrress = '';
+        $file_name = $_FILES['image']['name'];
+        if(!empty($file_name)) {
 
-        foreach($str_arr as $my_Array){
-            $nameAddr  = explode("#", $my_Array);
+            $file_type = $_FILES['image']['type'];
+            $temp_name = $_FILES['image']['tmp_name'];
+            $file = $temp_name;
+            $content = chunk_split(base64_encode(file_get_contents($file)));
+            $uid = md5(uniqid(time()));
 
-            $message = " 
+            $emailAddr1 = $_POST['emailAddr'];
+            $str_arr  = explode(",", $emailAddr1);
+            $prefix = $sentEmailAddrress = $notSentEmailAddrress = '';
+
+            foreach($str_arr as $my_Array){
+                $body = " 
+                <html> 
+                <body>
+                   <table style='border: 0px solid #06F;padding:10px;border-radius:10px;'>
+                      <tr>
+                          <td width='500'>
+                              <div class='maindiv'>
+<pre>Hi $nameAddr[0],
+
+Greetings from Amma Orphan Home!
+
+$msg
+
+</pre>
+                              </div>
+                          </td>
+                      </tr>
+                  </table>
+                </body>
+                </html>";
+
+                $nameAddr  = explode("#", $my_Array);
+
+                $eol = PHP_EOL;
+
+                // Basic headers
+                $header = "From: info@ammaorphanhome.org".$eol;
+                $header .= "Reply-To: ".$replyto.$eol;
+                $header .= "MIME-Version: 1.0\r\n";
+                $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"";
+
+                // Put everything else in $message
+                $message = "--".$uid.$eol;
+                $message .= "Content-Type: text/html; charset=ISO-8859-1".$eol;
+                $message .= "Content-Transfer-Encoding: 8bit".$eol.$eol;
+                $message .= $body.$eol;
+
+                $message .= "--".$uid.$eol;
+                $message .= "Content-Type: ".$file_type."; name=\"".$file_name."\"".$eol;
+                $message .= "Content-Transfer-Encoding: base64".$eol;
+                $message .= "Content-Disposition: attachment; filename=\"".$file_name."\"".$eol;
+                $message .= $content.$eol;
+                $message .= "--".$uid."--";
+
+                // send the mail
+                if (mail($nameAddr[1], $subject, $message, $header)) {
+                    $sentEmailAddrress .= $prefix  . $nameAddr[1] ;
+                    $prefix = ',';
+                } else {
+                    $notSentEmailAddrress .= $prefix  . $nameAddr[1] ;
+                    $prefix = ',';
+                    echo "<script>alert('inside file name ==> 7!');</script>";
+                }
+            }
+            if(!empty($sentEmailAddrress)){
+                echo "<script>alert('Sent an email to following addresses ==>  $sentEmailAddrress !')</script>";
+            }
+            if(!empty($notSentEmailAddrress)){
+                echo "<script>alert('Could not send emails to following addresses ==>   $notSentEmailAddrress !')</script>";
+            }
+            ?>
+
+            <script type="text/javascript">
+                window.location="<?php echo URL; ?>contacts.php";
+            </script>
+            <?php
+
+            // get the extensions of the file
+            /*$base = basename($file_name);
+            $extension = substr($base, strlen($base)-4, strlen($base));
+
+            // allowed extensions
+            $allowed_extensions = array(".doc", "docx", ".pdf", ".zip", ".png", "jpeg", ".jpg", ".JPG" );
+            if (in_array($extension, $allowed_extensions)){
+
+            } else {
+            }*/
+        } else {
+            $emailAddr1 = $_POST['emailAddr'];
+            $str_arr  = explode(",", $emailAddr1);
+            $headers .= "From:info@ammaorphanhome.org\r\n";
+            $headers .= "Content-type: text/html\r\n";
+            $prefix = $sentEmailAddrress = $notSentEmailAddrress = '';
+
+            foreach($str_arr as $my_Array){
+                $nameAddr  = explode("#", $my_Array);
+
+                $message = " 
                     <html> 
                     <body>
                        <table style='border: 0px solid #06F;padding:10px;border-radius:10px;'>
@@ -138,26 +316,27 @@ $msg
                     </body>
                     </html>";
 
-            if (mail($nameAddr[1], $subject, $message, $headers)) {
-                $sentEmailAddrress .= $prefix  . $nameAddr[1] ;
-                $prefix = ',';
-            } else {
-                $notSentEmailAddrress .= $prefix  . $nameAddr[1] ;
-                $prefix = ',';
+                if (mail($nameAddr[1], $subject, $message, $headers)) {
+                    $sentEmailAddrress .= $prefix  . $nameAddr[1] ;
+                    $prefix = ',';
+                } else {
+                    $notSentEmailAddrress .= $prefix  . $nameAddr[1] ;
+                    $prefix = ',';
+                }
             }
-        }
-        if(!empty($sentEmailAddrress)){
-            echo "<script>alert('Sent an email to following addresses ==>  $sentEmailAddrress !')</script>";
-        }
-        if(!empty($notSentEmailAddrress)){
-            echo "<script>alert('Could not send email's to following addresses ==>   $notSentEmailAddrress !')</script>";
-        }
+            if(!empty($sentEmailAddrress)){
+                echo "<script>alert('Sent an email to following addresses ==>  $sentEmailAddrress !')</script>";
+            }
+            if(!empty($notSentEmailAddrress)){
+                echo "<script>alert('Could not send email's to following addresses ==>   $notSentEmailAddrress !')</script>";
+            }
 
-        ?>
-        <script type="text/javascript">
-            window.location="<?php echo URL; ?>contacts.php";
-        </script>
-        <?php
+            ?>
+            <script type="text/javascript">
+                window.location="<?php echo URL; ?>contacts.php";
+            </script>
+            <?php
+        }
 
     } else if(isset($_POST) && $_POST['submit']=='Edit') {
 
@@ -237,7 +416,9 @@ $msg
                       <div class="card">
                           <h3 class="card-title">Send E-mail</h3>
                           <div class="card-body">
-                              <form method="post" action="<?php echo $_SEVER['PHP_SELF']; ?>" enctype="multipart/form-data">
+                              <form role="form" method="post"
+                                    action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                                    enctype="multipart/form-data" onsubmit="return validate();">
                                   <div class="form-group">
                                       <label for="message">Selected Emails</label>
                                       <textarea readonly cols="30" rows="3" class="form-control" id="emailNames" name="emailNames"
@@ -252,6 +433,11 @@ $msg
                                       <textarea cols="30" rows="10" class="form-control" id="message" name="msg"
                                                 placeholder="eg. Enter email content."></textarea>
                                   </div>
+                                  <div class="form-group">
+                                      <label for="photo" class="control-label">Attachment</label>
+                                      <input type="file" class="form-control" id="attach" name="image">
+                                  </div>
+
                                   <div class="clearfix"></div>
                                   <div class="card-footer">
                                       <input type="hidden" name="qid" value="<?php echo $guid; ?>">
@@ -461,6 +647,10 @@ $msg
                                   <label for="message">Email Body</label>
                                   <textarea cols="30" rows="10" class="form-control" id="message" name="msg"
                                             placeholder="eg. Enter email content."></textarea>
+                              </div>
+                              <div class="form-group">
+                                  <label for="photo" class="control-label">Attachment</label>
+                                  <input type="file" class="form-control" id="attach" name="image">
                               </div>
                               <div class="clearfix"></div>
                               <div class="card-footer">

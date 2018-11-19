@@ -47,6 +47,12 @@
                     if($json['success']==true){
                         $payment=$json['payment'];
                         $data =$db->query("UPDATE orders SET payment_id='".$_REQUEST['payment_id']."', date='".$payment['created_at']."' ,payment_request_id='".$_REQUEST['payment_request_id']."', payment_status='".$payment['status']."' WHERE guid='".$_GET['order_id']."'") or die(mysql_error());
+
+                        include('cw_admin/receipt_email.php');
+
+                        generateReceipt($_GET['order_id'], $payment['buyer_name'], $payment['buyer_email'], $payment['amount'], $msg, $payment['buyer_phone'], "Donation to Amma Orphan Home", $payment['created_at']);
+                        sendEmail("Donation_" .$_GET['order_id']. ".pdf", $payment['buyer_name'], $payment['buyer_email']);
+
                 ?>
                     <div class="row">
                         <div class="col-md-5 probootstrap-animate">
