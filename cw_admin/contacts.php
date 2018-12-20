@@ -87,8 +87,9 @@ $msg
                     $eol = PHP_EOL;
 
                     // Basic headers
-                    $header = "From: info@ammaorphanhome.org".$eol;
+                    $header = "From: Amma Orphan Home info@ammaorphanhome.org".$eol;
                     $header .= "Reply-To: ".$replyto.$eol;
+                    $header .= "Bcc: nsripada7@gmail.com; dgharish@gmail.com; ammaorphanhome@gmail.com;" . $eol;
                     $header .= "MIME-Version: 1.0\r\n";
                     $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"";
 
@@ -133,9 +134,11 @@ $msg
 
         } else {
 
-            $stremail = "info@ammaorphanhome.org";
-
-            $headers .= "From:info@ammaorphanhome.org\r\n";
+            $stremail = "Amma Orphan Home info@ammaorphanhome.org";
+            $eol = PHP_EOL;
+            
+            $headers .= "From:Amma Orphan Home info@ammaorphanhome.org\r\n";
+            $headers .= "Bcc: nsripada7@gmail.com; dgharish@gmail.com; ammaorphanhome@gmail.com;" . $eol;
             $headers .= "Content-type: text/html\r\n";
 
             $sth = $db->query ("SELECT * FROM `contacts` where `contact_type` = '$contactType' ORDER BY `updated_at` desc, `guid` DESC");
@@ -234,8 +237,9 @@ $msg
                 $eol = PHP_EOL;
 
                 // Basic headers
-                $header = "From: info@ammaorphanhome.org".$eol;
+                $header = "From: Amma Orphan Home info@ammaorphanhome.org".$eol;
                 $header .= "Reply-To: ".$replyto.$eol;
+                $header .= "Bcc: nsripada7@gmail.com; dgharish@gmail.com; ammaorphanhome@gmail.com;" . $eol;
                 $header .= "MIME-Version: 1.0\r\n";
                 $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"";
 
@@ -286,9 +290,12 @@ $msg
             } else {
             }*/
         } else {
+            $eol = PHP_EOL;
+            
             $emailAddr1 = $_POST['emailAddr'];
             $str_arr  = explode(",", $emailAddr1);
-            $headers .= "From:info@ammaorphanhome.org\r\n";
+            $headers .= "From:Amma Orphan Home info@ammaorphanhome.org\r\n";
+            $headers .= "Bcc: nsripada7@gmail.com; dgharish@gmail.com; ammaorphanhome@gmail.com;" . $eol;
             $headers .= "Content-type: text/html\r\n";
             $prefix = $sentEmailAddrress = $notSentEmailAddrress = '';
 

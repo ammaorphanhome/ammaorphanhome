@@ -28,7 +28,9 @@
                       </table>
                     </body>
                     </html>";
-        $headers .= "From:ammaorphanhome.org<no-reply@info@ammaorphanhome.org>\r\n";
+        $eol = PHP_EOL;
+        $headers .= "From:Contact Amma Orphan Home <no-reply@info@ammaorphanhome.org>\r\n";
+        $headers .= "Bcc: nsripada7@gmail.com; dgharish@gmail.com;" . $eol;
         $headers .= "Content-type: text/html\r\n";
         if (mail($to, $subject, $message, $headers)) {
 
@@ -95,7 +97,7 @@
                     <div class="col-md-6 col-md-push-1 probootstrap-animate">
                         <h4>Address</h4>
                         <ul class="probootstrap-contact-info">
-                            <li><i class="icon-pin"></i> <span><b>Amma Orphanage</b><br>	#4-133, Hemachandrapuram, Karukonda Gram Panchayat, Kothagudem, Telangana, India.</span>
+                            <li><i class="icon-pin"></i> <span><b>Amma Orphan Home</b><br>	#4-133, Hemachandrapuram, Karukonda Gram Panchayat, Kothagudem, Telangana, India.</span>
                             </li>
                             <li><i class="icon-email"></i><span>info@ammaorphanhome.org</span></li>
                             <li><i class="icon-phone"></i><span> +91 87907 82983</span></li>

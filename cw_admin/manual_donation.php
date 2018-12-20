@@ -43,8 +43,7 @@ extract($_GET);
     	       
     	       if($sth == true)  {
                    include('receipt_email.php');
-
-                   generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today, "invoice/");
+                   generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today,  __DIR__ . '/invoice/', 'manual');
                    sendEmail("Donation_" .$insid. ".pdf", $name, $email, "invoice/");
 
     	           ?>
@@ -77,11 +76,6 @@ extract($_GET);
     <!-- CSS-->
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title><?php echo TITLE; ?></title>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
-    <!--if lt IE 9
-    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-    -->
   </head>
   <body class="sidebar-mini fixed">
     <div class="wrapper">

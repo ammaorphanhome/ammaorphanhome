@@ -10,7 +10,7 @@
         form button { margin: 5px 0px; }
         textarea { display: block; margin-bottom: 10px; }
         /*post*/
-        .post { border: 1px solid #ccc; margin-top: 10px; }
+        .post { border: 1px solid #C5E0FA; margin-top: 10px; }
         /*comments*/
         .comments-section { margin-top: 10px; border: 1px solid #ccc; }
         .comment { margin-bottom: 10px; }
@@ -200,9 +200,14 @@
                                 <?php $m++;
                             } } ?>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><a href="donations.php">See All Donations</a></p>
+                            </div>
+                        </div>
                     </div>
                 </section>
-                <section class="probootstrap-section" style="padding-bottom:0px;">
+                <section class="probootstrap-section" style="color: #EEEEEE" ; padding-bottom:0px;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
@@ -330,7 +335,7 @@
                     <div class="text">
                         <div class="probootstrap-animate">
                             <h3>OUR STORY</h3>
-                            <p align="justify">Amma Orphanage, Known as the "Amma Anadha Saranalayam" is a non profit organisation Founded by Mr. E. Teja with the objective to provide solution to the orphans. This is to be achieved by providing them with free basic school education, healthy home atmosphere, guiding these children towards understanding the need for healthy living and secure a place for them among the rest of the society.
+                            <p align="justify">Amma Orphan Home, Known as the "Amma Anadha Saranalayam" is a non profit organisation Founded by Mr. E. Teja with the objective to provide solution to the orphans. This is to be achieved by providing them with free basic school education, healthy home atmosphere, guiding these children towards understanding the need for healthy living and secure a place for them among the rest of the society.
                                 <br>
                                 <br> The motto encourages us in working towards promoting "Universal Brotherhood" and creating wellness in physical-mental-spiritual areas for all children under its care in school and orphanage.</p>
                             <p><a href="about.php" class="btn btn-primary btn-lg">Read More</a></p>

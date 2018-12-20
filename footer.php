@@ -4,7 +4,7 @@
             <div class="col-md-4 probootstrap-animate">
                 <div class="probootstrap-footer-widget">
                     <h3>About Us</h3>
-                    <p>Amma Orphanage, Known as the "Amma Anadha Saranalayam" is a non profit organisation Founded by Mr. E. Teja with the objective to provide solution to the orphans.</p>
+                    <p>Amma Orphan Home, Known as the "Amma Anadha Saranalayam" is a non profit organisation Founded by Mr. E. Teja with the objective to provide solution to the orphans.</p>
                     <ul class="probootstrap-footer-social">
                         <li><a href="https://www.facebook.com/amma.sharanalayam"><i class="icon-facebook"></i></a></li>
                         <li><a href="https://www.youtube.com/channel/UCcnEbIAHu6H3ED1axBVgO8w"><i class="icon-youtube"></i></a></li>
@@ -40,7 +40,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-left">
-                    <p>&copy; 2018 <a href="#">Amma Orphanage</a>. All Rights Reserved.</p>
+                    <p>&copy; 2018 <a href="#">Amma Orphan Home</a>. All Rights Reserved.</p>
                 </div>
                 <div class="col-md-4 probootstrap-back-to-top">
                     <p><a href="#" class="js-backtotop">Back to top <i class="icon-arrow-long-up"></i></a></p>

@@ -29,7 +29,7 @@
                     </div>
                     <div id="ourStory" class="col-md-5 col-md-pull-6 probootstrap-animate">
                         <h2>Our Story</h2>
-                        <p>Amma Orphanage, known as "Amma Anadha Sharanalayam" is a non profit organisation Founded by Mr. E.
+                        <p>Amma Orphan Home, known as "Amma Anadha Sharanalayam" is a non profit organisation Founded by Mr. E.
                             Teja with the objective to provide solution to the orphans. This is to be achieved by providing them
                             with quality school education, healthy home atmosphere, guiding these children towards understanding
                             the need for healthy living and secure a place for them among the rest of the society.</p>

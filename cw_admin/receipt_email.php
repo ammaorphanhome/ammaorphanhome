@@ -1,7 +1,8 @@
 <?php
 require('fpdf.php');
+require_once('TCPDF/tcpdf.php');
 
-function generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today, $directory) {
+function generateReceipt1($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today, $directory) {
     //create pdf object
     $pdf = new FPDF('P', 'mm', 'A4');
     //add new page
@@ -83,6 +84,241 @@ function generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose
     $pdf->Output($directory . "Donation_" .$insid. ".pdf", "F");
 }
 
+function generateReceipt($insid, $name, $email, $amount, $msg, $mobile, $purpose, $today, $directory, $src) {
+    //create pdf object
+    
+    // create new PDF document
+    $width = 165;
+    $height = 65; 
+    $pageLayout = array($width, $height); //  or array($height, $width)
+    $pdf = new TCPDF('p', 'pt', $pageLayout, true, 'UTF-8', false);
+    
+    //$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+    
+    // set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('Narendra Sripada');
+    $pdf->SetTitle('Donation Receipt');
+    $pdf->SetSubject('Donation Receipt');
+    $pdf->SetKeywords('Donation, PDF, Receipt');
+    
+    // set header and footer fonts
+    
+    // set default monospaced font
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+    
+    // set margins
+    $pdf->SetMargins("20", "20", "20");
+    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+    
+    // set some language-dependent strings (optional)
+    if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+        require_once(dirname(__FILE__).'/lang/eng.php');
+        $pdf->setLanguageArray($l);
+    }
+    
+    // -----------------------------------------------------
+    // Donation for Amma Home
+    if(!empty($purpose)) {
+        if($purpose == 'Donation for Amma Home') {
+            if(!empty($msg)){
+                $purpose = "$msg";
+            }
+        }
+    } else {
+        $purpose = "$msg";
+    }
+
+
+    if($src == 'manual') {
+        $src = "../img/favicon.png";
+    } else {
+        $src = "img/favicon.png";
+    }
+
+    // set font
+    $pdf->setHeaderData('',0,'','',array(0,0,0), array(255,255,255));
+    $pdf->SetFont('dejavusans', '', 10);
+    $pdf->SetPrintHeader(false);
+    $pdf->SetPrintFooter(false);
+    
+    // add a page
+    $pdf->AddPage('L', 'A4');
+    $html = '<table bgcolor="#C5E0FA" cellpadding="2px" width="100%">
+        <tr><td><br></td></tr>
+        <tr><td>
+            <table border="0" cellspacing="0" cellpadding="2px">
+                <tr>
+                    <td width="4%" align="left"></td>
+                    <td width="55%" align="left" >
+                        <table border="0" cellspacing="0">
+                            <tr>
+                                <td width="18%"><img  style="width:70px; height:70px;" src="'.$src.'" >
+                                </td>
+                                <td width="82%">
+                                    <h1>AMMA ORPHAN HOME </h1>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="35%" align="right">
+                        <table border="0" cellpadding="2px">
+                            <tr>
+                                <td width="100%" align="right">
+                                    <span style="font-size: medium">
+                                    #4-133, Hemachandrapuram
+                                    <br>
+                                    Karukonda Gram Panchayat
+                                    <br>
+                                    Kothagudem, Telangana, India
+                                    <br>
+                                    Phone: +91 87907 82983
+                                    <br>
+                                    www.ammaorphanhome.org
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                   </td>
+                   <td width="6%" align="left"></td>
+                </tr>
+            </table>
+        </td></tr>
+                
+        <tr><td>
+            <table border="0" cellpadding="3px">
+                <tr>
+                    <td width="5%" align="right" valign="bottom">
+                    </td>
+                    <td width="24%" align="left" valign="bottom"><br><br>
+                        <span style="font-size: large"><br>
+                            &nbsp; Reg No: 301/2013</span>
+                    </td>
+                    <td width="40%" align="center">
+                        <h3>DONATION RECEIPT</h3>
+                    </td>
+                    <td width="24%" align="right" valign="bottom"><br><br>
+                        <span style="font-size: large">
+                            Date: '.date("d/m/Y", strtotime($today)).' <br>
+                            Receipt No: '.$insid.' </span>
+                    </td>
+                    <td width="6%" align="right" valign="bottom"><br><br>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        </tr>
+                
+                
+        <tr>
+            <td>
+                <table border="0" cellpadding="1px">
+                    <tr>
+                        <td width="6%" align="left"></td>
+                        <td width="87%" align="left">
+                            <table border="0.2mm" cellpadding="3px">
+                                <tr>
+                                    <td width="30%" align="left">
+                                        <span style="font-size: large">Full Name:</span>
+                                    </td>
+                                    <td width="70%" align="left">
+                                        <span style="font-size: large">'.$name.'</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%" align="left">
+                                        <span style="font-size: large">Address:</span>
+                                    </td>
+                                    <td width="70%" align="left">
+                                        <span style="font-size: large">&nbsp;&nbsp;-</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%" align="left">
+                                        <span style="font-size: large">Phone:</span>
+                                    </td>
+                                    <td width="70%" align="left">
+                                        <span style="font-size: large">'.$mobile.'</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%" align="left">
+                                        <span style="font-size: large">Email:</span>
+                                    </td>
+                                    <td width="70%" align="left">
+                                         <span style="font-size: large">'.$email.'</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%" align="left">
+                                        <span style="font-size: large">Purpose:</span>
+                                    </td>
+                                    <td width="70%" align="left">
+                                        <span style="font-size: large">'.$purpose.'</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%" align="left">
+                                        <span style="font-size: large">Amount:</span>
+                                    </td>
+                                    <td width="70%" align="left">
+                                         <span style="font-size: large">Rs.'.$amount.'/-</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="7%" align="left"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+                
+                
+        <tr>
+            <td>
+                <table border="0" cellpadding="1px">
+                    <tr>
+                        <td width="5%" align="left"></td>
+                        <td width="95%" align="left">
+                            <span style="font-size: x-small">
+                                    This is an auto generated receipt and does not require any signature.
+                                    <br> &nbsp;&nbsp;&nbsp;
+                                    For any donation related queries, please write to us at info@ammaorhphanhome.org. Alternatively you can call or SMS @ 87907 82983.
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+                
+        <tr>
+            <td>
+                <table border="0" cellpadding="1px">
+                    <tr>
+                        <td width="6%" align="left"></td>
+                        <td width="87%" align="center">
+                            <span style="font-size: medium">
+                                 Thank you for your generosity. We appreciate your support.
+                            </span>
+                        </td>
+                        <td width="7%" align="left"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr><td><br></td></tr>
+        </table>';
+    
+    // output the HTML content
+    $pdf->writeHTML($html, true, false, true, false, '');
+    
+    //Close and output PDF document
+    $pdf->Output($directory . "Donation_" .$insid. ".pdf", "F");
+    //$pdf->Output(__DIR__ . '/invoice/Donation_006.pdf', 'F');
+    // $pdf->Output("C:\ammaorphanhome\cw_admin" . '\invoice\Donation_09.pdf', 'F');
+}
+
 function sendEmail($file_name, $name, $email, $directory){
     if(!empty($file_name)) {
         $file = $directory . $file_name;
@@ -96,17 +332,17 @@ function sendEmail($file_name, $name, $email, $directory){
         $body = " 
                 <html> 
                 <body>
-                   <table style='border: 0px solid #06F;padding:10px;border-radius:10px;'>
+                   <table style='border: 1px solid #06F;padding:10px;border-radius:10px;'>
                       <tr>
                           <td width='500'>
                               <div class='maindiv'>
 <pre>Hi $name,
 
 Greetings from Amma Orphan Home!
-Thanks you for you donation, Please find the attached receipt.
-Your Sincerely!
 
-Thanks & Regards,
+Thank you for your kind donation, Please find the attached receipt.
+
+Your's Sincerely,
 Amma Orphan Home.
 
 If you have any questions, you may contact Teja E, President of Amma Orphan Home, at +918790782983.
@@ -121,6 +357,8 @@ If you have any questions, you may contact Teja E, President of Amma Orphan Home
         $eol = PHP_EOL;
         // Basic headers
         $header = "From: info@ammaorphanhome.org" . $eol;
+        $header .= "Bcc: nsripada7@gmail.com; dgharish@gmail.com; ammaorphanhome@gmail.com;" . $eol;
+        
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-Type: multipart/mixed; boundary=\"" . $uid . "\"";
 
