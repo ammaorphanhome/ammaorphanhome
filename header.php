@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Amma Orphanage :: Yours Amma Anadha Sharanalayam</title>
+    <title>Amma Orphan Home :: Yours Amma Anadha Sharanalayam</title>
 
     <link rel="shortcut icon" href="https://www.ammaorphanhome.org/img/favicon.png"  type="image/png">
     <link rel="icon" href="https://www.ammaorphanhome.org/img/favicon.png" type="image/png">
@@ -30,11 +30,21 @@
     <meta name="theme-color" content="#ffffff">
 
     <meta name="description" content="Yours Amma Anadha Sharanalayam">
-    <meta name="keywords" content="Amma Orphanage, Amma children home, Amma anadhasaranalayam">
+    <meta name="keywords" content="Amma Orphan Home, Amma Home, Amma Anadha Sharanalayam, Amma Orphanage, Children home, Amma Anadha Saranalayam, 
+    			Mother Orphan Home, amma orphan home, Amma Orphan Home Kothagudem, Amma Orphan Home Khammam, Amma Orphan Home Telnagana,
+    			Amma Orphan Home Andhra Pradesh, Amma Orphan Home India,
+    			stop hunger, food donation, end hunger, food donation, cloth donation, cloth distribution, books donation, education, save a girl, 
+    			blodd donation, food donation at slumns, evironmental protection, blood donation, services to elders, old age home,
+    			amma chinnarula ashramam, amma andha sharanalayam, mother orphan home, amma teja, eslavath teja, blessy teja, chinthamalla blessy,
+    			">
     <meta property="og:title" content="Amma Home">
     <meta property="og:url" content="https://www.ammaorphanhome.org/index.php">
     <meta property="og:description" content="Amma Orphan home: A Non Profitable Organizatin for Orphan Children">
     <meta property="og:image" content="https://www.ammaorphanhome.org/img/favicon/apple-icon-180x180.png">
+
+
+	<meta name="google-site-verification" content="BCXwXVkaTz1WBFK3myVI2EfbBMtFe0xQblaIRJZDArQ" />
+
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -48,4 +58,5 @@
     <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
     <script src="js/highlight.js"></script>
+    
 </head>
